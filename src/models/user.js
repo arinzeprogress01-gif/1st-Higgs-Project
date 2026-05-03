@@ -1,0 +1,53 @@
+import mongoose from "mongoose";
+
+const UserSchema = new mongoose.Schema({
+
+    name : {
+        type: String,
+        required: true,
+        minlength: 4,
+        maxLength: 30,
+        match: [
+            /^[a-zA-Z\s'-]+$/,
+            "Name can only contain letters, spaces, hyphens and apostrophes"
+        ]
+    },
+
+    email : {
+        type : String,
+        required : true,
+        unique : true,
+        match: [
+            /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+            "Please fill a valid email address"
+        ]
+    },
+
+    password : {
+        type : String,
+        required : true,
+        unique : true,
+        minlength: 8,
+        maxLength: 15,
+        match: [
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+            "Password must be at least 8 characters with uppercase, lowercase and number"
+        ]
+    },
+
+    category: {
+        type: String,
+        enum: ["personal", "professional", "other"],
+        default: null,
+    },
+
+},
+    
+    {
+        timestamps: true,
+    }
+);
+
+const User = mongoose.model("User", UserSchema);
+
+export default User;
