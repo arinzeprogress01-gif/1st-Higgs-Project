@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
 
     category: {
         type: String,
-        enum: ["personal", "professional", "other"],
+        enum: ["personal", "professional", "todo-list"],
         default: null,
     },
 
