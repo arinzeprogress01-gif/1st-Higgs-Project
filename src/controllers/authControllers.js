@@ -73,3 +73,46 @@ export const registerUser = async (req, res) => {
         })
     }
 };
+
+export const loginUser = async (req, res) => {
+    try{
+
+        const { email, password} = req.body
+
+        const user = await User.findOne({email});
+
+        if (!user) {
+            return res.status(404).json({
+                message: " Credentials Do not Match this User"
+            })
+        };
+
+        const isMatch = await bcrypt.compare (password, user.password)
+
+        if (!isMatch) {
+            res.status(404).json({
+                message: " Password Do Not Match"
+            })
+        }
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.json({
+            message: "Login successful",
+            token,
+            user: {
+                name: user.name,
+                email: user.email,
+                DairyId: user.DairyId,
+                category: user.category,
+            },
+        });
+
+    }catch (error) {
+        res.status(500).json({message : error.message})
+    }
+}

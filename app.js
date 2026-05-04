@@ -1,13 +1,13 @@
-import express from "express"
-import cors from "cors"
-import connectDB from "./src/config/db.js"
+import express from "express";
+import cors from "cors";
+import connectDB from "./src/config/db.js";
 
-import authRoutes from "./src/Routes/authRoutes.js"
-import userRoutes from "./src/Routes/userRoutes.js"
+import authRoutes from "./src/Routes/authRoutes.js";
+import userRoutes from "./src/Routes/userRoutes.js";
 
-const app = express()
+const app = express();
 
-connectDB()
+connectDB();
 
 app.use(cors());
 
