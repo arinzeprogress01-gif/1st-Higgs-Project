@@ -1,7 +1,10 @@
 import app from "./app.js";
 import { config } from "dotenv"
+import connectDB from "./src/config/db.js";
 
 config()
+
+connectDB();
 
 if (typeof process.env.PORT !== "undefined") {
     const PORT = process.env.PORT;

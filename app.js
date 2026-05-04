@@ -1,13 +1,10 @@
 import express from "express";
 import cors from "cors";
-import connectDB from "./src/config/db.js";
 
 import authRoutes from "./src/Routes/authRoutes.js";
 import userRoutes from "./src/Routes/userRoutes.js";
 
 const app = express();
-
-connectDB();
 
 app.use(cors());
 

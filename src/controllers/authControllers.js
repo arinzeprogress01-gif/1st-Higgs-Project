@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import generateDiaryId from "../src/utils/generateDairyId.js";
-import User from "..src/models/user.js"
+import generateDiaryId from "../utils/generateDairyId.js";
+import User from "../models/user.js"
 
 
 export const registerUser = async (req, res) => {

@@ -1,6 +1,6 @@
-import { getProfile } from "../src/controllers/profileControllers";
+import { getProfile } from "../controllers/profileController.js";
 
-import { protect } from "../src/middleware/authMiddleware.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 import express from "express";
 
