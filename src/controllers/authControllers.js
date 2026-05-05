@@ -37,14 +37,14 @@ export const registerUser = async (req, res) => {
             categoryValue = category;
         };
 
-        let DairyId;
+        let dairyId = undefined;
 
         if (categoryValue === "personal") {
-            DairyId = generateDiaryId("PER");
+            dairyId = generateDiaryId("PER");
         } else if (categoryValue === "professional") {
-            DairyId = generateDiaryId("PRO");
+            dairyId = generateDiaryId("PRO");
         } else if (categoryValue === "todo_list") {
-            DairyId = generateDiaryId("TOD");
+            dairyId = generateDiaryId("TOD");
         };
 
         const user = await User.create({
@@ -52,7 +52,7 @@ export const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             category: categoryValue,
-            DairyId,
+            DairyId: dairyId,
             createdAt: new Date(),
         });
 

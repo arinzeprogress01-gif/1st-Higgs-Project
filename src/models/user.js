@@ -41,6 +41,11 @@ const UserSchema = new mongoose.Schema({
         default: null,
     },
 
+    DairyId: {
+        type: String,
+        unique: true,
+    }
+
 },
     
     {
