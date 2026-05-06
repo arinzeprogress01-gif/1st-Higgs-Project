@@ -26,7 +26,6 @@ const UserSchema = new mongoose.Schema({
     password : {
         type : String,
         required : true,
-        unique : true,
         minlength: 8,
         maxLength: 128,
         match: [
@@ -35,16 +34,16 @@ const UserSchema = new mongoose.Schema({
         ]
     },
 
-    category: {
+    systemType: {
         type: String,
-        enum: ["personal", "professional", "todo-list"],
-        default: null,
+        enum: ["personal", "professional", "todo-List"],
+        default: null
     },
 
-    DairyId: {
+    DiaryId: {
         type: String,
         unique: true,
-    }
+    },
 
 },
     

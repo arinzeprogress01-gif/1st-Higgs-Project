@@ -1,0 +1,412 @@
+import mongoose from "mongoose";
+
+const connectDB = async () => {
+    try{
+        const conn = await mongoose.connect (process.env.MONGO_URI)
+
+        console.log(`
+            MongoDB connecting...
+            MongoDB connecting...
+            MongoDB connecting...
+            MongoDB Connected: ${conn.connection.host}`);
+
+
+    } catch (error) {
+        console.error("DATABASE CONNECTION ERROR", error.message);
+        process.exit(1);
+    }
+};
+
+export default connectDB;
+
+
+
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+import generateDiaryId from "../utils/generateDairyId.js";
+import User from "../models/user.js"
+
+
+export const registerUser = async (req, res) => {
+    try {
+
+        const { name, email, password, confirmPassword, category  } = req.body;
+
+        if (!name || !email || !password || !confirmPassword || !category) {
+            return res.status(400).send({
+                "message" : " All Fields are Required"
+            })
+        };
+
+        if (password !== confirmPassword) {
+            return res.status(400).json({ message: "Passwords do not match" });
+        };
+
+        const userExists = await User.findOne({email});
+
+        if (userExists)  {
+            return res.status(400).json({
+                message: " User Account Already Exists"
+            })
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        let categoryValue;
+
+        if ( category === "personal" || category === "professional" || category === "todo_list") {
+            categoryValue = category;
+        };
+
+        let dairyId = undefined;
+
+        if (categoryValue === "personal") {
+            dairyId = generateDiaryId("PER");
+        } else if (categoryValue === "professional") {
+            dairyId = generateDiaryId("PRO");
+        } else if (categoryValue === "todo_list") {
+            dairyId = generateDiaryId("TOD");
+        };
+
+        const user = await User.create({
+            name,
+            email,
+            password: hashedPassword,
+            category: categoryValue,
+            DairyId: dairyId,
+            createdAt: new Date(),
+        });
+
+        res.status(201).json({
+            message: "User Account Registered Successfully , Go To Email To Activate Account !",
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                category: user.category,
+                DairyId: user.DairyId
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Server Error : Registration Failed",
+            error: error.message
+        })
+    }
+};
+
+export const loginUser = async (req, res) => {
+    try{
+
+        const { email, password} = req.body
+
+        const user = await User.findOne({email});
+
+        if (!user) {
+            return res.status(404).json({
+                message: " Credentials Do not Match this User"
+            })
+        };
+
+        const isMatch = await bcrypt.compare (password, user.password)
+
+        if (!isMatch) {
+            res.status(404).json({
+                message: " Password Do Not Match"
+            })
+        }
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.json({
+            message: "Login successful",
+            token,
+            user: {
+                name: user.name,
+                email: user.email,
+                DairyId: user.DairyId,
+                category: user.category,
+            },
+        });
+
+    }catch (error) {
+        res.status(500).json({message : error.message})
+    }
+}
+
+import User from "../models/user.js";
+
+export const getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        if (!user) {
+            return res.status(404).json({ message: "User Profile Not found" });
+        }
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error: error.message });
+    }
+};
+
+
+import jwt from "jsonwebtoken";
+
+export const protect = (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        try {
+            token = req.headers.authorization.split(" ")[1];
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+            req.user = { id: decoded.id };
+
+            next();
+        } catch (error) {
+            return res.status(401).json({ message: "Not Authorized!" });
+        }
+    }
+
+    if (!token) {
+        return res.status(401).json({ message: "No Token Provided" });
+    }
+};
+
+export default protect;
+
+import mongoose from "mongoose";
+
+const taskSchema = new mongoose.Schema ({
+
+    task: {
+        type: String,
+        minLength: 3,
+        maxLength: 50,
+    },
+
+    taskDAte: {
+        createdAt : new Date()
+    },
+
+    existingDays: {
+        type: Number,
+        default: 1
+    },
+
+    taskStatus: {
+        type: String,
+        enum: [ " pending", "completed", "overdue"],
+        default: null,
+    },
+
+    priority: {
+        type: String,
+        enum: ["low", "medium", "high"],
+        default: null,
+    },
+    
+    isPending: {
+        type: Boolean,
+        default: true
+    },
+
+    isCompleted: {
+        type: Boolean,
+        default: false,
+    },
+
+    isOverdue: {
+        type: Boolean,
+        default: false,
+    },
+    
+},
+
+    {
+        timestamps: true,
+    }
+);
+
+const Task = mongoose.model("Task", taskSchema)
+
+export default Task;
+
+import mongoose from "mongoose";
+
+const UserSchema = new mongoose.Schema({
+
+    name : {
+        type: String,
+        required: true,
+        minlength: 4,
+        maxLength: 30,
+        match: [
+            /^[a-zA-Z\s'-]+$/,
+            "Name can only contain letters, spaces, hyphens and apostrophes"
+        ]
+    },
+
+    email : {
+        type : String,
+        required : true,
+        unique : true,
+        match: [
+            /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+            "Please fill a valid email address"
+        ]
+    },
+
+    password : {
+        type : String,
+        required : true,
+        unique : true,
+        minlength: 8,
+        maxLength: 128,
+        match: [
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+            "Password must be at least 8 characters with uppercase, lowercase and number"
+        ]
+    },
+
+    category: {
+        type: String,
+        enum: ["personal", "professional", "todo-list"],
+        default: null,
+    },
+
+    DairyId: {
+        type: String,
+        unique: true,
+    }
+
+},
+    
+    {
+        timestamps: true,
+    }
+);
+
+const User = mongoose.model("User", UserSchema);
+
+export default User;
+
+import { registerUser , loginUser } from "../controllers/authControllers.js";
+import {protect} from "../middleware/authMiddleware.js"
+
+import express from "express";
+
+const router = express.Router();
+
+router.post("/register", registerUser);
+
+router.post("/login", loginUser)
+
+export default router;
+
+import { getProfile } from "../controllers/profileController.js";
+
+import { protect } from "../middleware/authMiddleware.js";
+
+import express from "express";
+
+
+const router = express.Router();
+
+router.get("/profile", protect, getProfile);
+
+export default router;
+
+const generateDiaryId = (type) => {
+    const year = new Date().getFullYear();
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    let random = "";
+
+    for (let i = 0; i < 5; i++) {
+        random += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return `${type}-${year}-${random}`;
+};
+
+export default generateDiaryId;
+
+import express from "express";
+import cors from "cors";
+
+import authRoutes from "./src/Routes/authRoutes.js";
+import userRoutes from "./src/Routes/userRoutes.js";
+
+const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+
+app.get("/app", (_req, res) => {
+    res.json({
+        message: " WE ARE LIVE!"
+    })
+});
+
+export default app;
+ 
+{
+  "name": "1st_higgs_production",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node serv.js",
+    "a": "nodemon serv.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.15.2",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "gitignore": "^0.7.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
+
+
+import app from "./app.js";
+import { config } from "dotenv"
+import connectDB from "./src/config/db.js";
+
+config()
+
+connectDB();
+
+if (typeof process.env.PORT !== "undefined") {
+    const PORT = process.env.PORT;
+    app.listen(PORT, () => {
+        console.log(`APP RUNNING ON PORT ${PORT}`);
+    });
+} else {
+    const PORT = 5001; // Default to port 5001 if PORT is not defined
+    app.listen(PORT, () => {
+        console.log(`APP RUNNING ON PORT ${PORT}`);
+    });
+} // Default to port 5001 if PORT is not defined

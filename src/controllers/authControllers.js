@@ -33,18 +33,18 @@ export const registerUser = async (req, res) => {
 
         let categoryValue;
 
-        if ( category === "personal" || category === "professional" || category === "todo_list") {
+        if ( category === "personal" || category === "professional" || category === "todo-List") {
             categoryValue = category;
         };
 
-        let dairyId = undefined;
+        let diaryId = undefined;
 
         if (categoryValue === "personal") {
-            dairyId = generateDiaryId("PER");
+            diaryId = generateDiaryId("PER");
         } else if (categoryValue === "professional") {
-            dairyId = generateDiaryId("PRO");
-        } else if (categoryValue === "todo_list") {
-            dairyId = generateDiaryId("TOD");
+            diaryId = generateDiaryId("PRO");
+        } else if (categoryValue === "todo-List") {
+            diaryId = generateDiaryId("TOD");
         };
 
         const user = await User.create({
@@ -52,7 +52,7 @@ export const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             category: categoryValue,
-            DairyId: dairyId,
+            DiaryId: diaryId,
             createdAt: new Date(),
         });
 
@@ -63,7 +63,7 @@ export const registerUser = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 category: user.category,
-                DairyId: user.DairyId
+                DiaryId: user.DiaryId
             }
         });
     } catch (error) {
@@ -90,7 +90,7 @@ export const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare (password, user.password)
 
         if (!isMatch) {
-            res.status(404).json({
+            return res.status(404).json({
                 message: " Password Do Not Match"
             })
         }
@@ -107,7 +107,7 @@ export const loginUser = async (req, res) => {
             user: {
                 name: user.name,
                 email: user.email,
-                DairyId: user.DairyId,
+                DiaryId: user.DiaryId,
                 category: user.category,
             },
         });
@@ -116,3 +116,33 @@ export const loginUser = async (req, res) => {
         res.status(500).json({message : error.message})
     }
 }
+
+export const resetPassword = async (req, res) => {
+    try {
+        const { email, newPassword, confirmNewPassword } = req.body;
+
+        if (!email || !newPassword || !confirmNewPassword) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            return res.status(400).json({ message: "Passwords do not match" });
+        }
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        user.password = hashedPassword;
+        await user.save();
+
+        res.json({ message: "Password reset successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
