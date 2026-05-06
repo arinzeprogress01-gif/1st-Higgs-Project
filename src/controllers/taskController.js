@@ -80,7 +80,7 @@ export const updateTask = async (req, res) => {
         const { task: title, description, priority, status, dueDate } = req.body;
 
         const changes = {};
-ly
+        
         if (title && title !== task.task) {
             changes.task = { from: task.task, to: title };
             task.task = title;
