@@ -51,7 +51,7 @@ export const registerUser = async (req, res) => {
             name,
             email,
             password: hashedPassword,
-            category: categoryValue,
+            systemType: categoryValue,
             DiaryId: diaryId,
             createdAt: new Date(),
         });
@@ -62,7 +62,7 @@ export const registerUser = async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
-                category: user.category,
+                systemType: user.systemType,
                 DiaryId: user.DiaryId
             }
         });
