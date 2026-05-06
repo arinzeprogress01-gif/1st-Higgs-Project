@@ -4,9 +4,9 @@ import { timeAgo } from "../utils/timeAgo.js";
 
 export const createTask = async (req, res) => {
     try {
-        const { task, description, priority } = req.body;
+        const { task, description, priority, dueDate } = req.body;
 
-        if (!task || !description || !priority) {
+        if (!task || !description || !priority || !dueDate) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -15,12 +15,20 @@ export const createTask = async (req, res) => {
             task,
             description,
             priority,
+            dueDate,
         });
 
         await TaskHistory.create({
             task: newTask._id,
             user: req.user.id,
             action: "created",
+            changes: {
+                task: { from: null, to: task },
+                description: { from: null, to: description },
+                priority: { from: null, to: priority },
+                dueDate: { from: null, to: dueDate },
+            },
+
         });
 
         res.status(201).json(newTask);
@@ -141,6 +149,19 @@ export const deleteTask = async (req, res) => {
         }
 
         await task.deleteOne();
+
+        await TaskHistory.create({
+            task: task._id,
+            user: req.user.id,
+            action: "deleted",
+            changes: {
+                task: { from: task.task, to: null },
+                description: { from: task.description, to: null },
+                priority: { from: task.priority, to: null },
+                dueDate: { from: task.dueDate, to: null },
+            },
+        });
+
 
         res.json({ message: "Task deleted successfully" });
 
