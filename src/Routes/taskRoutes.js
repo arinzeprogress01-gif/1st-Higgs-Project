@@ -10,5 +10,5 @@ router.get("/list", protect, getTasks);
 router.put("/update/:id", protect, updateTask);
 router.delete("/delete/:id", protect, deleteTask);
 
-router.get("/history/:id", protect, getTaskHistory);
+router.get("/history", protect, getTaskHistory);
 export default router;
