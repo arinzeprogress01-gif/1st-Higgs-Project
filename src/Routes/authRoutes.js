@@ -1,6 +1,6 @@
 import { registerUser , loginUser } from "../controllers/authControllers.js";
 import { resetPassword } from "../controllers/authControllers.js";
-import {protect} from "../middleware/authMiddleware.js"
+
 
 import express from "express";
 

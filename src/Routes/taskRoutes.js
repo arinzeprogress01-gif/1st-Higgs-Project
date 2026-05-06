@@ -1,4 +1,4 @@
-import { createTask, getTasks, updateTask, deleteTask } from "../controllers/taskController.js";
+import { createTask, getTasks, updateTask, deleteTask, getTaskHistory } from "../controllers/taskController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -9,4 +9,6 @@ router.post("/create", protect, createTask);
 router.get("/list", protect, getTasks);
 router.put("/update/:id", protect, updateTask);
 router.delete("/delete/:id", protect, deleteTask);
+
+router.get("/history/:id", protect, getTaskHistory);
 export default router;
