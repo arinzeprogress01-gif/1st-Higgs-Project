@@ -108,7 +108,7 @@ export const loginUser = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 DiaryId: user.DiaryId,
-                category: user.category,
+                systemType: user.systemType,
             },
         });
 
