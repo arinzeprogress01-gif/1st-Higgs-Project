@@ -7,7 +7,9 @@ import taskRoutes from "./src/Routes/taskRoutes.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://1st-higgs-task20.netlify.app"
+}));
 
 app.use(express.json());
 
