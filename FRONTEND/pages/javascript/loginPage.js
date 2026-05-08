@@ -64,13 +64,13 @@ loginForm.addEventListener("submit", async (e) => {
 
             setTimeout(() => {
 
-                if (data.user.category === "personal") {
+                if (data.user.systemType === "personal") {
 
                     window.location.href =
                         "/dashboards/personalDashboard.html";
 
                 } else if (
-                    data.user.category === "professional"
+                    data.user.systemType === "professional"
                 ) {
 
                     window.location.href =
