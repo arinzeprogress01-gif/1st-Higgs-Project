@@ -79,7 +79,7 @@ loginForm.addEventListener("submit", async (e) => {
                 } else {
 
                     window.location.href =
-                        "/dashboards/todoDashboard.html";
+                        "/dashboard/todoDashboard.html";
                 }
 
             }, 1500);
