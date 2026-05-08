@@ -1,3 +1,4 @@
+console.log("Register Page JS Loaded");
 const registerForm = document.getElementById("registerForm");
 
 registerForm.addEventListener("submit", async (e) => {
@@ -15,6 +16,21 @@ registerForm.addEventListener("submit", async (e) => {
 
     const category =
         document.getElementById("category").value;
+
+
+
+    console.log({
+        name,
+        email,
+        password,
+        confirmPassword,
+        category,
+    });
+
+    if (!category) {
+        alert("Please select a system type");
+        return;
+    }
 
     try {
 
