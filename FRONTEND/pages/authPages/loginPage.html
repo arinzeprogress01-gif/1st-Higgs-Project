@@ -46,11 +46,11 @@
                     Sign In
                 </h2>
 
-                <form>
+                <form id="loginForm">
 
-                    <input type="email" placeholder="Email Address" Class="input-field">
+                    <input type="email" id="email" placeholder="Email Address" Class="input-field">
 
-                    <input type="password" placeholder="Password" Class="input-field">
+                    <input type="password" id="password" placeholder="Password" Class="input-field">
 
                     <div Class="remember-row">
 
@@ -65,7 +65,7 @@
 
                     </div>
 
-                    <button Class="login-btn">
+                    <button type="submit" Class="login-btn">
                         Login
                     </button>
 
@@ -81,9 +81,9 @@
         </div>
 
     </div>
-
+<div id="toast"></div>
 </body>
-
+<script src="../javascript/loginPage.js"></script>
 </html>
 
 
