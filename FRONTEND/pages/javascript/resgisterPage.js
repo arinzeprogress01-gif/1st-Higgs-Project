@@ -44,7 +44,7 @@ registerForm.addEventListener("submit", async (e) => {
             alert(data.message);
 
             window.location.href =
-                "../authPages/loginPage.html";
+                "/authPages/loginPage.html";
 
         } else {
 
