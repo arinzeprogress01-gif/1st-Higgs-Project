@@ -1,4 +1,19 @@
 console.log("Register Page JS Loaded");
+
+function showToast(message, type) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.className = `show ${type}`;
+
+    setTimeout(() => {
+
+        toast.className="";
+
+    }, 3000);
+}
 const registerForm = document.getElementById("registerForm");
 
 registerForm.addEventListener("submit", async (e) => {
@@ -28,7 +43,7 @@ registerForm.addEventListener("submit", async (e) => {
     });
 
     if (!category) {
-        alert("Please select a system type");
+        showToast("Please select a system type", "error");
         return;
     }
 
@@ -57,20 +72,20 @@ registerForm.addEventListener("submit", async (e) => {
 
         if (response.ok) {
 
-            alert(data.message);
+            showToast(data.message, "success");
 
             window.location.href =
                 "/authPages/loginPage.html";
 
         } else {
 
-            alert(data.message);
+            showToast(data.message, "error");
         }
 
     } catch (error) {
 
         console.log(error);
 
-        alert("Registration Failed");
+        showToast("Registration Failed", "error");
     }
 });

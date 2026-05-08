@@ -190,3 +190,50 @@ body {
         margin-bottom: 40px;
     }
 }
+
+#toast {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    min-width: 250px;
+
+    padding: 16px 22px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    color: white;
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+    transition: all 0.4s ease;
+
+    z-index: 9999;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+    backdrop-filter: blur(10px);
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#toast.success {
+    background: linear-gradient(135deg,
+            #22c55e,
+            #16a34a);
+}
+
+#toast.error {
+    background: linear-gradient(135deg,
+            #ef4444,
+            #dc2626);
+}
