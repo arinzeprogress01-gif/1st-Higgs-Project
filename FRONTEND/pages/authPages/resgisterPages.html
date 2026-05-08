@@ -40,17 +40,17 @@
                     Create Account
                 </h2>
 
-                <form>
+                <form id="registerForm">
 
-                    <input type="text" placeholder="Full Name" Class="input-field">
+                    <input type="text" id="name" placeholder="Full Name" Class="input-field">
 
-                    <input type="email" placeholder="Email Address" Class="input-field">
+                    <input type="email" id="email" placeholder="Email Address" Class="input-field">
 
-                    <input type="password" placeholder="Password" Class="input-field">
+                    <input type="password" id="password" placeholder="Password" Class="input-field">
 
-                    <input type="confirmPassword" placeholder="Confirm Password" Class="input-field">
+                    <input type="confirmPassword" id="confirmPassword" placeholder="Confirm Password" Class="input-field">
 
-                    <select name="category" Class="input-field">
+                    <select name="category" id="category" Class="input-field">
                     
                         <option value="" disabled selected>
                             Select System Type
@@ -88,5 +88,7 @@
     </div>
 
 </body>
+
+<script src="../javascript/registerPage.js"></script>
 
 </html>
