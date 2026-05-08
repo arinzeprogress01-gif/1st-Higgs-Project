@@ -67,14 +67,14 @@ loginForm.addEventListener("submit", async (e) => {
                 if (data.user.systemType === "personal") {
 
                     window.location.href =
-                        "/dashboards/personalDashboard.html";
+                        "/dashboard/personalDashboard.html";
 
                 } else if (
                     data.user.systemType === "professional"
                 ) {
 
                     window.location.href =
-                        "/dashboards/professionalDashboard.html";
+                        "/dashboard/professionalDashboard.html";
 
                 } else {
 
