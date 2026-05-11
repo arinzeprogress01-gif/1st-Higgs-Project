@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Tasks | Task 2.0
+    </title>
+
+    <link rel="stylesheet" href="../styles/tasksPage.css">
+
+</head>
+
+<body>
+
+    <div Class="dashboard-container">
+
+        <aside Class="sidebar">
+
+            <div Class="logo-section">
+
+                <h1 Class="logo-text">
+                    TASK 2.0
+                </h1>
+
+            </div>
+
+            <nav Class="sidebar-nav">
+
+                <a href="../dashboard/personalDashboard.html" Class="nav-item">
+                    Dashboard
+                </a>
+
+                <a href="../dashboard/tasksPage.html" Class="nav-item active">
+                    Tasks
+                </a>
+
+                <a href="../dashboard/completedPage.html" Class="nav-item">
+                    Completed
+                </a>
+
+                <a href="../dashboard/overduePage.html" Class="nav-item">
+                    Overdue
+                </a>
+
+                <a href="../dashboard/diaryPage.html" Class="nav-item">
+                    Diary
+                </a>
+
+                <a href="../dashboard/analyticsPage.html" Class="nav-item">
+                    Analytics
+                </a>
+
+                <a href="../dashboard/historyPage.html" Class="nav-item">
+                    History
+                </a>
+
+                <a href="../dashboard/profilePage.html" Class="nav-item">
+                    Profile
+                </a>
+
+                <a href="#" Class="nav-item logout-btn" id="logoutBtn">
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <main Class="main-content">
+
+            <div Class="tasks-top">
+
+                <div>
+
+                    <h1>
+                        Task Workspace
+                    </h1>
+
+                    <p>
+                        Manage all your tasks
+                    </p>
+
+                </div>
+
+                <button id="openModalBtn" Class="create-task-btn">
+                    + Create Task
+                </button>
+
+            </div>
+
+            <div Class="task-tools">
+
+                <input type="text" id="searchInput" placeholder="Search tasks..." Class="search-input">
+
+                <div Class="filters">
+
+                    <button Class="filter-btn active-filter" data-filter="all">
+                        All
+                    </button>
+
+                    <button Class="filter-btn" data-filter="pending">
+                        Pending
+                    </button>
+
+                    <button Class="filter-btn" data-filter="completed">
+                        Completed
+                    </button>
+
+                    <button Class="filter-btn" data-filter="overdue">
+                        Overdue
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="taskFeed" Class="task-feed">
+            </div>
+
+        </main>
+
+    </div>
+
+    <div Class="modal-overlay" id="taskModal">
+
+        <div Class="modal-content">
+
+            <div Class="modal-top">
+
+                <h2>
+                    Create Task
+                </h2>
+
+                <button id="closeModalBtn">
+                    ✕
+                </button>
+
+            </div>
+
+            <form id="taskForm">
+
+                <input type="text" id="task" placeholder="Task Title" Class="modal-input">
+
+                <textarea id="description" placeholder="Task Description" Class="modal-textarea"></textarea>
+
+                <select id="priority" Class="modal-input">
+
+                    <option value="">
+                        Select Priority
+                    </option>
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+                <input type="datetime-local" id="dueDate" Class="modal-input">
+
+                <button type="submit" Class="submit-task-btn">
+                    Create Task
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="../javascript/tasksPage.js"></script>
+
+</body>
+
+</html>

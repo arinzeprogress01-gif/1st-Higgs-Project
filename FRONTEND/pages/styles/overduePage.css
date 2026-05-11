@@ -1,0 +1,129 @@
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #0f172a;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+}
+
+.tasks-page {
+
+    padding: 32px;
+}
+
+.page-top {
+
+    margin-bottom: 28px;
+}
+
+.page-top h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+}
+
+.task-feed {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill,
+            minmax(320px, 1fr));
+
+    gap: 24px;
+}
+
+.task-card {
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 22px;
+
+    padding: 22px;
+
+    border:
+        1px solid rgba(239, 68, 68, 0.25);
+
+    backdrop-filter: blur(14px);
+}
+
+.task-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.priority.overdue {
+
+    background: #ef4444;
+
+    color: white;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+}
+
+.task-description {
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    line-height: 1.6;
+}
+
+.due-warning {
+
+    margin-top: 18px;
+
+    color: #f87171;
+
+    font-size: 14px;
+}
+
+.empty-text {
+
+    opacity: 0.7;
+
+    margin-top: 40px;
+}
+
+.page-bottom {
+
+    margin-top: -150px;
+    padding: 20px;
+
+}
+
+.page-bottom a {
+
+    display: inline-block;
+
+    float: right;
+
+    padding: 12px 24px;
+
+    background: #3b82f6;
+
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    margin-top: 24px;
+}

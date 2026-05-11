@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Task History | Task 2.0
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../styles/historyPage.css"
+    >
+
+</head>
+
+<body>
+
+    <div Class="dashboard-container">
+
+        <aside Class="sidebar">
+
+            <div Class="logo-section">
+
+                <h1 Class="logo-text">
+                    TASK 2.0
+                </h1>
+
+            </div>
+
+            <nav Class="sidebar-nav">
+
+                <a
+                    href="../dashboard/personalDashboard.html"
+                    Class="nav-item"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="../dashboard/tasksPage.html"
+                    Class="nav-item"
+                >
+                    Tasks
+                </a>
+
+                <a
+                    href="../dashboard/completedPage.html"
+                    Class="nav-item"
+                >
+                    Completed
+                </a>
+
+                <a
+                    href="../dashboard/overduePage.html"
+                    Class="nav-item"
+                >
+                    Overdue
+                </a>
+
+                <a
+                    href="../dashboard/diaryPage.html"
+                    Class="nav-item"
+                >
+                    Diary
+                </a>
+
+                <a
+                    href="../dashboard/analyticsPage.html"
+                    Class="nav-item"
+                >
+                    Analytics
+                </a>
+
+                <a
+                    href="../dashboard/historyPage.html"
+                    Class="nav-item active"
+                >
+                    History
+                </a>
+
+                <a
+                    href="../dashboard/profilePage.html"
+                    Class="nav-item"
+                >
+                    Profile
+                </a>
+
+                <a
+                    href="#"
+                    Class="nav-item logout-btn"
+                    id="logoutBtn"
+                >
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <main Class="main-content">
+
+            <div Class="page-top">
+
+                <h1>
+                    Task History
+                </h1>
+
+                <p>
+                    Activity timeline of your tasks
+                </p>
+
+            </div>
+
+            <div
+                id="historyFeed"
+                Class="history-feed"
+            >
+            </div>
+
+        </main>
+
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="../javascript/historyPage.js"></script>
+
+</body>
+
+</html>

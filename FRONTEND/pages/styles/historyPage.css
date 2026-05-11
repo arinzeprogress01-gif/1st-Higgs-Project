@@ -1,0 +1,164 @@
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #0f172a;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+}
+
+.dashboard-container {
+
+    display: flex;
+
+    min-height: 100vh;
+}
+
+.sidebar {
+
+    width: 260px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    padding: 28px 20px;
+
+    box-sizing: border-box;
+
+    border-right:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-text {
+
+    margin: 0;
+
+    margin-bottom: 40px;
+}
+
+.sidebar-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.nav-item {
+
+    text-decoration: none;
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    transition: 0.3s;
+}
+
+.nav-item:hover {
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+}
+
+.nav-item.active {
+
+    background:
+        linear-gradient(135deg,
+            #6366f1,
+            #8b5cf6);
+
+    color: white;
+}
+
+.main-content {
+
+    flex: 1;
+
+    padding: 32px;
+}
+
+.page-top {
+
+    margin-bottom: 32px;
+}
+
+.page-top h1 {
+
+    margin: 0;
+
+    font-size: 34px;
+}
+
+.page-top p {
+
+    opacity: 0.7;
+}
+
+.history-feed {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.history-card {
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(14px);
+}
+
+.history-title {
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+.history-status {
+
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    text-transform: capitalize;
+
+    margin-top: 10px;
+}
+
+.history-status.completed {
+
+    background: #22c55e;
+}
+
+.history-status.overdue {
+
+    background: #ef4444;
+}
+
+.history-status.pending {
+
+    background: #f59e0b;
+}

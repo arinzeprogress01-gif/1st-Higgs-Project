@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Analytics | Task 2.0
+    </title>
+
+    <link rel="stylesheet" href="../styles/analyticsPage.css">
+
+</head>
+
+<body>
+
+    <div Class="dashboard-container">
+
+        <aside Class="sidebar">
+
+            <div Class="logo-section">
+
+                <h1 Class="logo-text">
+                    TASK 2.0
+                </h1>
+
+            </div>
+
+            <nav Class="sidebar-nav">
+
+                <a href="../dashboard/personalDashboard.html" Class="nav-item">
+                    Dashboard
+                </a>
+
+                <a href="../dashboard/tasksPage.html" Class="nav-item">
+                    Tasks
+                </a>
+
+                <a href="../dashboard/completedPage.html" Class="nav-item">
+                    Completed
+                </a>
+
+                <a href="../dashboard/overduePage.html" Class="nav-item">
+                    Overdue
+                </a>
+
+                <a href="../dashboard/diaryPage.html" Class="nav-item">
+                    Diary
+                </a>
+
+                <a href="../dashboard/analyticsPage.html" Class="nav-item active">
+                    Analytics
+                </a>
+
+                <a href="../dashboard/historyPage.html" Class="nav-item">
+                    History
+                </a>
+
+                <a href="../dashboard/profilePage.html" Class="nav-item">
+                    Profile
+                </a>
+
+                <a href="#" Class="nav-item logout-btn" id="logoutBtn">
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <main Class="main-content">
+
+            <div Class="analytics-top">
+
+                <h1>
+                    Productivity Analytics
+                </h1>
+
+                <p>
+                    Track your task performance
+                </p>
+
+            </div>
+
+            <div Class="analytics-grid">
+
+                <div Class="analytics-card">
+
+                    <h2>
+                        Total Tasks
+                    </h2>
+
+                    <p id="totalTasks">
+                        0
+                    </p>
+
+                </div>
+
+                <div Class="analytics-card">
+
+                    <h2>
+                        Completed
+                    </h2>
+
+                    <p id="completedTasks">
+                        0
+                    </p>
+
+                </div>
+
+                <div Class="analytics-card">
+
+                    <h2>
+                        Pending
+                    </h2>
+
+                    <p id="pendingTasks">
+                        0
+                    </p>
+
+                </div>
+
+                <div Class="analytics-card">
+
+                    <h2>
+                        Overdue
+                    </h2>
+
+                    <p id="overdueTasks">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div Class="performance-box">
+
+                <h2>
+                    Productivity Score
+                </h2>
+
+                <div Class="progress-bar">
+
+                    <div Class="progress-fill" id="progressFill">
+                    </div>
+
+                </div>
+
+                <p id="productivityText">
+                    0%
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="../javascript/analyticsPage.js"></script>
+
+</body>
+
+</html>

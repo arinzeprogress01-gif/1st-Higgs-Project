@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Profile | Task 2.0
+    </title>
+
+    <link rel="stylesheet" href="../styles/profilePage.css">
+
+</head>
+
+<body>
+
+    <div Class="profile-container">
+
+        <div Class="profile-card">
+
+            <div Class="profile-top">
+
+                <div Class="profile-avatar">
+                    H
+                </div>
+
+                <h1 id="profileName">
+                    User Name
+                </h1>
+
+                <p id="profileEmail">
+                    user@email.com
+                </p>
+
+            </div>
+
+            <div Class="profile-details">
+
+                <div Class="detail-box">
+
+                    <h3>
+                        System Type
+                    </h3>
+
+                    <p id="systemType">
+                        personal
+                    </p>
+
+                </div>
+
+                <div Class="detail-box">
+
+                    <h3>
+                        Diary ID
+                    </h3>
+
+                    <p id="diaryId">
+                        PER-2040
+                    </p>
+
+                </div>
+
+            </div>
+
+                <button id="openEditProfileBtn" Class="edit-profile-btn">
+                    Edit Profile
+                </button>
+
+
+            <a href="../dashboard/personalDashboard.html">
+
+                <button Class="back-btn" id="backBtn">
+                    Back To Dashboard
+                </button>
+
+            </a>
+            
+
+        </div>
+
+    </div>
+    <div Class="modal-overlay" id="editProfileModal">
+    
+        <div Class="modal-content">
+    
+            <div Class="modal-top">
+    
+                <h2>
+                    Edit Profile
+                </h2>
+    
+                <button id="closeProfileModal">
+                    ✕
+                </button>
+    
+            </div>
+    
+            <form id="editProfileForm">
+    
+                <input type="text" id="editProfileName" Class="modal-input" placeholder="Full Name">
+    
+                <input type="email" id="editProfileEmail" Class="modal-input" placeholder="Email">
+    
+                <button type="submit" Class="submit-task-btn">
+                    Save Changes
+                </button>
+    
+            </form>
+    
+        </div>
+    
+    </div>
+    <script src="../javascript/profilePage.js"></script>
+
+</body>
+
+</html>

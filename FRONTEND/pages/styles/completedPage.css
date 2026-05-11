@@ -1,0 +1,137 @@
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #0f172a;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+}
+
+.tasks-page {
+
+    padding: 32px;
+}
+
+.page-top {
+
+    margin-bottom: 28px;
+}
+
+.page-top h1 {
+
+    font-size: 32px;
+
+    margin: 0;
+}
+
+.task-feed {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill,
+            minmax(320px, 1fr));
+
+    gap: 24px;
+}
+
+.task-card {
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 22px;
+
+    padding: 22px;
+
+    backdrop-filter: blur(14px);
+
+    transition: 0.3s;
+}
+
+.task-card:hover {
+
+    transform: translateY(-4px);
+}
+
+.task-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.task-top h3 {
+
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.priority {
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    text-transform: capitalize;
+}
+
+.priority.completed {
+
+    background: #22c55e;
+
+    color: white;
+}
+
+.task-description {
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    line-height: 1.6;
+}
+
+.empty-text {
+
+    opacity: 0.7;
+
+    font-size: 18px;
+
+    margin-top: 40px;
+}
+
+.page-bottom {
+
+    margin-top: -90px;
+
+}
+
+.page-bottom a {
+
+    display: inline-block;
+
+    float: right;
+
+    padding: 12px 24px;
+
+    background: #3b82f6;
+
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    margin-top: 24px;
+}

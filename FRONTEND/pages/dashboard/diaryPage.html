@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Diary | Task 2.0
+    </title>
+
+    <link rel="stylesheet" href="../styles/diaryPage.css">
+
+</head>
+
+<body>
+
+    <div Class="diary-container">
+
+        <div Class="diary-top">
+
+            <div>
+
+                <h1>
+                    My Diary
+                </h1>
+
+                <p id="diaryOwner">
+                    Diary Owner
+                </p>
+
+            </div>
+            <a href="../dashboard/personalDashboard.html">
+
+                <button id="backBtn">
+                    Dashboard
+                </button>
+
+            </a>
+            
+
+        </div>
+
+        <div Class="diary-form-card">
+
+            <textarea id="diaryText" placeholder="Write today's thoughts..."></textarea>
+
+            <button id="saveDiaryBtn">
+                Save Entry
+            </button>
+
+        </div>
+
+        <div Class="diary-feed" id="diaryFeed">
+
+        </div>
+
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="../javascript/diaryPage.js"></script>
+
+</body>
+
+</html>

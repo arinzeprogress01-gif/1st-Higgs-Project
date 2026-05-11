@@ -40,28 +40,47 @@ export const createTask = async (req, res) => {
 
 
 export const getTasks = async (req, res) => {
+
     try {
-        const tasks = await Task.find({ user: req.user.id }).sort({ createdAt: -1 });
+
+        const tasks = await Task.find({
+            user: req.user.id
+        });
 
         const now = new Date();
 
-        const formattedTasks = tasks.map(task => {
-            const taskObj = task.toObject();
+        for (const task of tasks) {
 
-            return {
-                ...taskObj,
-                age: timeAgo(task.createdAt),
-                isOverdue:
-                    task.dueDate &&
-                    task.dueDate < now &&
-                    task.status !== "completed",
-            };
-        });
+            if (
+                task.dueDate &&
+                task.taskStatus !== "completed" &&
+                task.dueDate < now
+            ) {
+
+                task.taskStatus = "overdue";
+
+                await task.save();
+            }
+        }
+
+        const updatedTasks =
+            await Task.find({
+                user: req.user.id
+            });
+
+        const formattedTasks =
+            updatedTasks.map(task => ({
+                ...task._doc,
+                age: timeAgo(task.createdAt)
+            }));
 
         res.json(formattedTasks);
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+
+        res.status(500).json({
+            message: error.message
+        });
     }
 };
 
