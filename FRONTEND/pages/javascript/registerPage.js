@@ -34,12 +34,12 @@ registerForm.addEventListener("submit", async (e) => {
 
 
     const categoryValue = category;
+
     console.log({
         name,
         email,
         password,
         confirmPassword,
-        category,
         categoryValue
     });
 
@@ -64,7 +64,7 @@ registerForm.addEventListener("submit", async (e) => {
                     email,
                     password,
                     confirmPassword,
-                    systemType: categoryValue,
+                    category: categoryValue,
                 }),
             }
         );
