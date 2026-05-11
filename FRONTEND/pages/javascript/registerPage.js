@@ -85,16 +85,10 @@ registerForm.addEventListener("submit", async (e) => {
     } catch (error) {
 
         console.log(error);
-        if (!response.ok) {
 
-            showToast(
-                data.message,
-                "error"
-            );
-
-            return;
-        }
-
-        showToast(error.message, "error");
+        showToast(
+            "Registration failed",
+            "error"
+        );
     }
 });
