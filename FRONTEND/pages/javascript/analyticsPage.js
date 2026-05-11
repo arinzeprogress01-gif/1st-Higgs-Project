@@ -20,6 +20,8 @@ async function loadAnalytics() {
                 "https://onest-higgs-project.onrender.com/api/task/list",
 
                 {
+
+                    method: "GET",
                     headers: {
 
                         Authorization:
@@ -47,21 +49,21 @@ function updateAnalytics(tasks) {
     const completed =
         tasks.filter(task =>
 
-            task.taskStatus ===
+            task.status ===
             "completed"
         ).length;
 
     const pending =
         tasks.filter(task =>
 
-            task.taskStatus ===
+            task.status ===
             "pending"
         ).length;
 
     const overdue =
         tasks.filter(task =>
 
-            task.taskStatus ===
+            task.status ===
             "overdue"
         ).length;
 

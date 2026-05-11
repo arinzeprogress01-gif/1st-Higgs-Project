@@ -24,6 +24,8 @@ async function getOverdueTasks() {
                 "https://onest-higgs-project.onrender.com/api/task/list",
 
                 {
+
+                    method: "GET",
                     headers: {
 
                         Authorization:
@@ -38,7 +40,7 @@ async function getOverdueTasks() {
         const overdueTasks =
             tasks.filter(task =>
 
-                task.taskStatus ===
+                task.status ===
                 "overdue"
             );
 

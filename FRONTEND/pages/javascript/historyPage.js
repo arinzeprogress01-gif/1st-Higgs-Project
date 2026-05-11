@@ -24,6 +24,8 @@ async function getTaskHistory() {
                 "https://onest-higgs-project.onrender.com/api/task/history",
 
                 {
+
+                    method: "GET",
                     headers: {
 
                         Authorization:
@@ -78,10 +80,10 @@ function renderHistory(history) {
                 </p>
 
                 <span
-                    Class="history-status ${item.taskStatus}"
+                    Class="history-status ${item.status}"
                 >
 
-                    ${item.taskStatus}
+                    ${item.status}
 
                 </span>
 

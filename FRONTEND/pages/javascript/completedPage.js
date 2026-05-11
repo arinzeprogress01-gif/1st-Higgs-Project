@@ -24,6 +24,8 @@ async function getCompletedTasks() {
                 "https://onest-higgs-project.onrender.com/api/task/list",
 
                 {
+
+                    method: "GET",
                     headers: {
 
                         Authorization:
@@ -38,7 +40,7 @@ async function getCompletedTasks() {
         const completedTasks =
             tasks.filter(task =>
 
-                task.taskStatus ===
+                task.status ===
                 "completed"
             );
 

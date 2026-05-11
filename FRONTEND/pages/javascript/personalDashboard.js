@@ -407,7 +407,7 @@ function filterTasks(status) {
 
     const filteredTasks =
         allTasks.filter(task =>
-            task.taskStatus === status
+            task.status === status
         );
 
     renderTasks(filteredTasks);
@@ -474,26 +474,40 @@ const taskModal =
     document.getElementById("taskModal");
 
 const openModalBtn =
-    document.getElementById("openModalBtn");
+    document.getElementById(
+        "openModalBtn"
+    );
+
+if (openModalBtn) {
+
+    openModalBtn.addEventListener(
+
+        "click",
+
+        () => {
+
+            taskModal.classList.add(
+                "active"
+            );
+        }
+    );
+}
 
 const closeModalBtn =
     document.getElementById("closeModalBtn");
 
-openModalBtn.addEventListener(
-    "click",
-    () => {
+if (closeModalBtn) {
 
-        taskModal.classList.add("active");
-    }
-);
+    closeModalBtn.addEventListener(
+        "click",
+        () => {
+            taskModal.classList.remove(
+                "active"
+            );
+        }
 
-closeModalBtn.addEventListener(
-    "click",
-    () => {
-
-        taskModal.classList.remove("active");
-    }
-);
+    );
+}
 
 const taskForm =
     document.getElementById("taskForm");
@@ -679,19 +693,19 @@ function updateStats(tasks) {
     const completed =
         tasks.filter(
             task =>
-                task.taskStatus === "completed"
+                task.status === "completed"
         ).length;
 
     const pending =
         tasks.filter(
             task =>
-                task.taskStatus === "pending"
+                task.status === "pending"
         ).length;
 
     const overdue =
         tasks.filter(
             task =>
-                task.taskStatus === "overdue"
+                task.status === "overdue"
         ).length;
 
     document.getElementById(
@@ -896,7 +910,7 @@ document
 
             const completedTasks =
                 allTasks.filter(task =>
-                    task.taskStatus === "completed"
+                    task.status === "completed"
                 );
 
             renderTasks(completedTasks);
@@ -921,7 +935,7 @@ document
 
             const overdueTasks =
                 allTasks.filter(task =>
-                    task.taskStatus === "overdue"
+                    task.status === "overdue"
                 );
 
             renderTasks(overdueTasks);
