@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors({
 
-    origin: "*",
+    origin: "https://1st-higgs-task20.netlify.app",
 }));
 
 app.use(express.json());
