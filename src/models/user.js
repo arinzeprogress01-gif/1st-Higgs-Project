@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
     systemType: {
         type: String,
         enum: ["personal", "professional", "todo-List"],
-        default: null
+        default: null,
     },
 
     DiaryId: {

@@ -11,8 +11,8 @@ export const registerUser = async (req, res) => {
         const { name, email, password, confirmPassword, category  } = req.body;
 
         if (!name || !email || !password || !confirmPassword || !category) {
-            return res.status(400).send({
-                "message" : " All Fields are Required"
+            return res.status(400).json({
+                message : " All Fields are Required"
             })
         };
 
@@ -31,11 +31,28 @@ export const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        let categoryValue;
+        const allowedCategories = [
 
-        if ( category === "personal" || category === "professional" || category === "todo-List") {
-            categoryValue = category;
-        };
+            "personal",
+
+            "professional",
+
+            "todo-List"
+        ];
+
+        if (
+            !allowedCategories.includes(category)
+        ) {
+
+            return res.status(400).json({
+
+                message:
+                    "Invalid category selected"
+            });
+        }
+
+        const categoryValue =
+            category;
 
         let diaryId = undefined;
 
