@@ -15,9 +15,9 @@ app.use(cors({
 
         "http://localhost:5500",
 
-        "https://yourfrontend.vercel.app",
+        "https://1st-higgs-task20.vercel.app",
 
-        "https://yourfrontend.netlify.app"
+        "https://1st-higgs-task20.netlify.app"
     ],
 
     methods: [
