@@ -15,7 +15,7 @@ export const createTask = async (req, res) => {
             task,
             description,
             priority,
-            dueDate,
+            dueDate: dueDate || null,
         });
 
         await TaskHistory.create({
@@ -53,11 +53,11 @@ export const getTasks = async (req, res) => {
 
             if (
                 task.dueDate &&
-                task.taskStatus !== "completed" &&
+                task.status !== "completed" &&
                 task.dueDate < now
             ) {
 
-                task.taskStatus = "overdue";
+                task.status = "overdue";
 
                 await task.save();
             }

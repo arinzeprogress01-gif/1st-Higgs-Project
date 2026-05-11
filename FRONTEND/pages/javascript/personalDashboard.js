@@ -49,6 +49,7 @@ async function getTasks() {
         const response = await fetch(
             "https://onest-higgs-project.onrender.com/api/task/list",
             {
+                method: "GET",
                 headers: {
                     Authorization:
                         `Bearer ${token}`,
