@@ -6,15 +6,15 @@ const developmentMode = false; // Set to false in production
 if (!token && !developmentMode) {
 
     window.location.href =
-        "../authPages/loginPage.html";
+        "/authPages/loginPage.html";
 }
 
-const overdueTaskFeed =
+const completedTaskFeed =
     document.getElementById(
-        "overdueTaskFeed"
+        "completedTaskFeed"
     );
 
-async function getOverdueTasks() {
+async function getCompletedTasks() {
 
     try {
 
@@ -37,15 +37,15 @@ async function getOverdueTasks() {
         const tasks =
             await response.json();
 
-        const overdueTasks =
+        const completedTasks =
             tasks.filter(task =>
 
                 task.status ===
-                "overdue"
+                "completed"
             );
 
-        renderOverdueTasks(
-            overdueTasks
+        renderCompletedTasks(
+            completedTasks
         );
 
     } catch (error) {
@@ -54,25 +54,25 @@ async function getOverdueTasks() {
     }
 }
 
-function renderOverdueTasks(tasks) {
+function renderCompletedTasks(tasks) {
 
     if (tasks.length === 0) {
 
-        overdueTaskFeed.innerHTML = `
+        completedTaskFeed.innerHTML = `
 
             <p Class="empty-text">
-                No overdue tasks
+                No completed tasks yet
             </p>
         `;
 
         return;
     }
 
-    overdueTaskFeed.innerHTML = "";
+    completedTaskFeed.innerHTML = "";
 
     tasks.forEach(task => {
 
-        overdueTaskFeed.innerHTML += `
+        completedTaskFeed.innerHTML += `
 
             <div Class="task-card">
 
@@ -82,9 +82,9 @@ function renderOverdueTasks(tasks) {
                         ${task.task}
                     </h3>
 
-                    <span Class="priority overdue">
+                    <span Class="priority completed">
 
-                        overdue
+                        completed
 
                     </span>
 
@@ -96,15 +96,9 @@ function renderOverdueTasks(tasks) {
 
                 </p>
 
-                <p Class="due-warning">
-
-                    Task deadline exceeded
-
-                </p>
-
             </div>
         `;
     });
 }
 
-getOverdueTasks();
+getCompletedTasks();

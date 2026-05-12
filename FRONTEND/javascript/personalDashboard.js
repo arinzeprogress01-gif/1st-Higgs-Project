@@ -4,7 +4,7 @@ const developmentMode = false; // Set to false in production
 if (!token && !developmentMode) {
 
     window.location.href =
-        "../authPages/loginPage.html";
+        "/authPages/loginPage.html";
 }
 
 function showToast(message, type) {
@@ -960,7 +960,7 @@ document
         () => {
 
             window.location.href =
-                "../pages/profilePage.html";
+                "/dashboard/profilePage.html";
         }
     );
 
@@ -982,7 +982,7 @@ document
             setTimeout(() => {
 
                 window.location.href =
-                    "../authPages/loginPage.html";
+                    "/authPages/loginPage.html";
 
             }, 1000);
         }

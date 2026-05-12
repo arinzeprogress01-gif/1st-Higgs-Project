@@ -32,18 +32,15 @@ registerForm.addEventListener("submit", async (e) => {
     const category =
         document.getElementById("category").value;
 
-
-    const categoryValue = category;
-
     console.log({
         name,
         email,
         password,
         confirmPassword,
-        categoryValue
+        category
     });
 
-    if (!categoryValue) {
+    if (!category) {
         showToast("Please select a system type", "error");
         return;
     }
@@ -64,7 +61,7 @@ registerForm.addEventListener("submit", async (e) => {
                     email,
                     password,
                     confirmPassword,
-                    category: categoryValue,
+                    category,
                 }),
             }
         );

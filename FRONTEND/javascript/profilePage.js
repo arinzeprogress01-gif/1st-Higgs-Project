@@ -6,7 +6,7 @@ const developmentMode = false; // Set to false in production
 if (!token && !developmentMode) {
 
     window.location.href =
-        "../authPages/loginPage.html";
+        "/authPages/loginPage.html";
 }
 
 const user =
