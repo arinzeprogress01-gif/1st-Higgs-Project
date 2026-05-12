@@ -9,21 +9,7 @@ const app = express();
 
 app.use(cors({
 
-    origin: [
-
-        "https://1st-higgs-project.vercel.app",
-
-        "https://1st-higgs-task20.netlify.app"
-    ],
-
-    methods: [
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE"
-    ],
-
-    credentials: true
+    origin: "https://1st-higgs-project.vercel.app",
 }));
 
 app.use(express.json());
