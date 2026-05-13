@@ -43,8 +43,6 @@ async function getTasks() {
                 "https://onest-higgs-project.onrender.com/api/task/list",
 
                 {
-
-                    method: "GET",
                     
                     headers: {
 

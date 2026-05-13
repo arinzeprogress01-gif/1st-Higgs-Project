@@ -59,6 +59,18 @@ async function getTasks() {
         const tasks =
             await response.json();
 
+        console.log(tasks);
+
+        if (!Array.isArray(tasks)) {
+
+            showToast(
+                "Failed to fetch tasks",
+                "error"
+            );
+
+            return;
+        };
+
         allTasks = tasks;
 
         renderTasks(tasks);
