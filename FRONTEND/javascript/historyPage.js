@@ -34,8 +34,11 @@ async function getTaskHistory() {
                 }
             );
 
-        const history =
+        const result =
             await response.json();
+
+        const history =
+            result.data;
 
         renderHistory(history);
 
