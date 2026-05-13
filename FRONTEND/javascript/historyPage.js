@@ -50,45 +50,38 @@ async function getTaskHistory() {
 
 function renderHistory(history) {
 
+    const historyFeed =
+        document.getElementById(
+            "historyFeed"
+        );
+
     historyFeed.innerHTML = "";
 
-    if (history.length === 0) {
-
-        historyFeed.innerHTML = `
-
-            <p>
-                No history found
-            </p>
-        `;
-
-        return;
-    }
-
     history.forEach(item => {
+
+        const taskTitle =
+            item.changes?.task?.to
+            ||
+            "Unknown Task";
 
         historyFeed.innerHTML += `
 
             <div Class="history-card">
 
-                <div Class="history-title">
-
-                    ${item.task}
-
-                </div>
+                <h3>
+                    ${taskTitle}
+                </h3>
 
                 <p>
-
-                    ${item.description || "No description"}
-
+                    Action:
+                    ${item.action}
                 </p>
 
-                <span
-                    Class="history-status ${item.status}"
-                >
-
-                    ${item.status}
-
-                </span>
+                <p>
+                    ${new Date(
+            item.performedAt
+        ).toLocaleString()}
+                </p>
 
             </div>
         `;
