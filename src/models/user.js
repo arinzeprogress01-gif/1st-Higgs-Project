@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
         minlength: 4,
         maxLength: 30,
         match: [
-            /^[a-zA-Z\s'-]+$/,
-            "Name can only contain letters, spaces, hyphens and apostrophes"
+            /^[a-zA-Z]+$/,
+            "Name can only contain letters"
         ]
     },
 
