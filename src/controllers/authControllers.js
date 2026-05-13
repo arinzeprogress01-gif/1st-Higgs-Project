@@ -28,7 +28,7 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({
                 message: " User Account Already Exists"
             })
-        };
+        }
 
         const passwordRegex =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -95,7 +95,7 @@ export const registerUser = async (req, res) => {
                 email: user.email,
                 systemType: user.systemType,
                 DiaryId: user.DiaryId
-            };
+            }
         });
     } catch (error) {
         console.log(error);
