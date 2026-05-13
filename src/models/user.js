@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
         minlength: 4,
         maxLength: 30,
         match: [
-            /^[a-zA-Z]+$/,
-            "Name can only contain letters"
+            /^[a-zA-Z\s'-]+$/,
+            "Name can only contain letters, spaces, hyphens and apostrophes"
         ]
     },
 
@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         unique : true,
         match: [
             /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-            "Please fill a valid email address"
+            "Please fill a valid email address , example: user@example.com"
         ]
     },
 
@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
         required : true,
         minlength: 8,
         maxLength: 128,
+
     },
 
     systemType: {
