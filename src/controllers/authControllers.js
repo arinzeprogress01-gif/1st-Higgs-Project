@@ -28,7 +28,19 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({
                 message: " User Account Already Exists"
             })
-        }
+        };
+
+        const passwordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (!passwordRegex.test(password)) {
+
+            return res.status(400).json({
+
+                message:
+                    "Password must contain uppercase, lowercase and number"
+            });
+        };
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -75,7 +87,7 @@ export const registerUser = async (req, res) => {
             createdAt: new Date(),
         });
 
-        res.status(201).json({
+        res.status(200).json({
             message: "User Account Registered Successfully , Congratulations!",
             user: {
                 id: user._id,
@@ -83,13 +95,14 @@ export const registerUser = async (req, res) => {
                 email: user.email,
                 systemType: user.systemType,
                 DiaryId: user.DiaryId
-            }
+            };
         });
     } catch (error) {
+        console.log(error);
+
         res.status(500).json({
-            message: "Server Error : Registration Failure!",
-            error: error.message
-        })
+            message: error.message
+        });
     }
 };
 
