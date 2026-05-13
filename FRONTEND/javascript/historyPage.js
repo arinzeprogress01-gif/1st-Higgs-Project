@@ -60,8 +60,15 @@ function renderHistory(history) {
     history.forEach(item => {
 
         const taskTitle =
+
             item.changes?.task?.to
+
             ||
+
+            item.changes?.task?.from
+
+            ||
+
             "Unknown Task";
 
         historyFeed.innerHTML += `
