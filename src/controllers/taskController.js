@@ -3,6 +3,9 @@ import TaskHistory from "../models/history.js";
 import { timeAgo } from "../utils/timeAgo.js";
 
 export const createTask = async (req, res) => {
+
+    console.log(req.body);
+    console.log(req.user);
     try {
         const { task, description, priority, dueDate } = req.body;
 
