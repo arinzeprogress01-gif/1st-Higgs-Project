@@ -20,14 +20,22 @@ registerForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name")
+    .value
+    .trim();
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email")
+    .value
+    .trim();
 
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("password")
+    .value
+    .trim();
 
     const confirmPassword =
-        document.getElementById("confirmPassword").value;
+        document.getElementById("confirmPassword")
+        .value
+        .trim();
 
     const category =
         document.getElementById("category").value;

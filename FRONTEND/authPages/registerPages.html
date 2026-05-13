@@ -42,17 +42,17 @@
 
                 <form id="registerForm">
 
-                    <input type="text" id="name" placeholder="Full Name" Class="input-field">
+                    <input type="text" id="name" placeholder="Full Name" Class="input-field" required>
 
-                    <input type="email" id="email" placeholder="Email Address" Class="input-field">
+                    <input type="email" id="email" placeholder="Email Address" Class="input-field" required>
 
-                    <input type="password" id="password" placeholder="Password" Class="input-field">
+                    <input type="password" id="password" placeholder="Password" Class="input-field" required>
 
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" Class="input-field">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" Class="input-field" required>
 
-                    <select name="category" id="category" Class="input-field">
+                    <select name="category" id="category" Class="input-field" required>
                     
-                        <option value="" disabled selected>
+                        <option value="">
                             Select System Type
                         </option>
                     
@@ -87,8 +87,8 @@
 
     </div>
 <div id="toast"></div>
-</body>
 
 <script src="/javascript/registerPage.js"></script>
+</body>
 
 </html>
