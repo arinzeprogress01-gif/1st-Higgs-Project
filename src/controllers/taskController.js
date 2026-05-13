@@ -144,6 +144,7 @@ export const updateTask = async (req, res) => {
 
         await TaskHistory.create({
             task: updatedTask._id,
+            taskTitle: updatedTask.task,
             user: req.user.id,
             action: "updated",
             changes,
@@ -174,6 +175,7 @@ export const deleteTask = async (req, res) => {
 
         await TaskHistory.create({
             task: task._id,
+            taskTitle: task.task,
             user: req.user.id,
             action: "deleted",
             changes: {
