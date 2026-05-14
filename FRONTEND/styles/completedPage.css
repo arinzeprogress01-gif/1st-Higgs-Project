@@ -40,6 +40,13 @@ body {
     width: 100%;
 }
 
+.task-feed {
+
+    position: relative;
+
+    z-index: 1;
+}
+
 .task-card {
 
     background:
@@ -196,7 +203,7 @@ body {
 
         margin-left: 0;
 
-        padding-top: 70px;
+        padding-top: 90px;
     }
 }
 
@@ -240,4 +247,17 @@ body {
 
     box-shadow:
         0 15px 30px rgba(139, 92, 246, 0.4);
+}
+
+.page-header {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    position: relative;
+
+    z-index: 20;
 }
