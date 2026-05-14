@@ -42,7 +42,37 @@ const taskFeed =
         "taskFeed"
     );
 
+function renderSkeletons() {
+
+    const taskFeed =
+        document.getElementById(
+            "taskFeed"
+        );
+
+    taskFeed.innerHTML = "";
+
+    for (let i = 0; i < 6; i++) {
+
+        taskFeed.innerHTML += `
+
+            <div Class="skeleton-card">
+
+                <div Class="skeleton skeleton-title"></div>
+
+                <div Class="skeleton skeleton-text"></div>
+
+                <div Class="skeleton skeleton-text short"></div>
+
+                <div Class="skeleton skeleton-btn"></div>
+
+            </div>
+        `;
+    }
+}
+
 async function getTasks() {
+
+    renderSkeletons();
 
     try {
 

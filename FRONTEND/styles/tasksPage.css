@@ -750,3 +750,84 @@ body {
         opacity: 1;
     }
 }
+
+/* =========================
+   SKELETON LOADING
+========================= */
+
+.skeleton-card {
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    backdrop-filter: blur(10px);
+}
+
+.skeleton {
+
+    border-radius: 12px;
+
+    animation:
+        skeletonLoading 1.2s infinite ease-in-out;
+
+    background:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 25%,
+            rgba(255, 255, 255, 0.12) 50%,
+            rgba(255, 255, 255, 0.05) 75%);
+
+    background-size: 200% 100%;
+}
+
+.skeleton-title {
+
+    height: 28px;
+
+    width: 70%;
+}
+
+.skeleton-text {
+
+    height: 16px;
+
+    width: 100%;
+}
+
+.skeleton-text.short {
+
+    width: 60%;
+}
+
+.skeleton-btn {
+
+    height: 42px;
+
+    width: 120px;
+
+    margin-top: 10px;
+}
+
+@keyframes skeletonLoading {
+
+    0% {
+
+        background-position:
+            200% 0;
+    }
+
+    100% {
+
+        background-position:
+            -200% 0;
+    }
+}
