@@ -257,8 +257,7 @@ if (savedTheme === "light") {
         "light-mode"
     );
 
-    themeToggle.textContent =
-        "☀️ Light Mode";
+    themeToggle.textContent = "☀️ Light Mode";
 }
 
 themeToggle.addEventListener(
