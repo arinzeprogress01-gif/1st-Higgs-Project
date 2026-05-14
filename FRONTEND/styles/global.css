@@ -7,6 +7,7 @@
     box-sizing: border-box;
 }
 
+html,
 body {
 
     width: 100%;
@@ -14,11 +15,15 @@ body {
     overflow-x: hidden;
 
     font-family: Arial, sans-serif;
+
+    scroll-behavior: smooth;
 }
 
 img {
 
     max-width: 100%;
+
+    display: block;
 }
 
 button,
@@ -27,4 +32,16 @@ textarea,
 select {
 
     font: inherit;
+}
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+ul {
+
+    list-style: none;
 }
