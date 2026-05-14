@@ -61,8 +61,19 @@ body {
 /* =========================
    SIDEBAR
 ========================= */
-
 .sidebar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 260px;
+
+    height: 100vh;
+
+    overflow-y: auto;
 
     background: rgba(255, 255, 255, 0.05);
 
@@ -80,7 +91,10 @@ body {
 
     box-shadow:
         0 0 25px rgba(0, 0, 0, 0.3);
+
+    z-index: 1000;
 }
+
 
 @media screen and (max-width: 768px) {
 
