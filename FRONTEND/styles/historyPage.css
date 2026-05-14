@@ -18,6 +18,14 @@ body {
     min-height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+
+    .dashboard-container {
+
+        flex-direction: column;
+    }
+}
+
 .sidebar {
 
     width: 260px;
@@ -98,6 +106,18 @@ body {
     flex: 1;
 
     padding: 32px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 15px;
+    }
 }
 
 .page-top {
