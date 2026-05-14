@@ -31,6 +31,12 @@ function showToast(message, type) {
     }, 3000);
 }
 
+
+
+let currentFilter = "all";
+
+let currentSort = "newest";
+
 /* GET TASKS */
 
 async function getTasks() {
@@ -57,7 +63,7 @@ async function getTasks() {
 
         allTasks = tasks;
 
-        renderTasks(tasks);
+        applyFilters();
 
     } catch (error) {
 
@@ -78,6 +84,9 @@ function renderTasks(tasks) {
         document.getElementById(
             "taskFeed"
         );
+
+    const searchInput =
+        document.getElementById("searchInput");        
 
     taskFeed.innerHTML = "";
 
@@ -106,6 +115,8 @@ function renderTasks(tasks) {
             ? "overdue-task"
             : ""}
             "
+            draggable="true"
+            data-id="${task._id}"
             >
             <span Class="status-badge
             ${task.status}">
@@ -167,6 +178,139 @@ function renderTasks(tasks) {
 
             </div>
         `;
+    });
+    initializeDragSystem();
+}
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-btn"
+    );
+
+filterButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            document
+                .querySelector(".active-filter")
+                ?.classList.remove(
+                    "active-filter"
+                );
+
+            button.classList.add(
+                "active-filter"
+            );
+
+            currentFilter =
+                button.dataset.filter;
+
+            applyFilters();
+        }
+    );
+});
+
+searchInput.addEventListener(
+    "input",
+    applyFilters
+);
+
+function applyFilters() {
+
+    let filteredTasks =
+        [...allTasks];
+
+    // SEARCH
+    const searchValue =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    if (searchValue) {
+
+        filteredTasks =
+            filteredTasks.filter(task =>
+
+                task.task
+                    .toLowerCase()
+                    .includes(searchValue)
+
+                ||
+
+                (task.description || "")
+                    .toLowerCase()
+                    .includes(searchValue)
+            );
+    }
+
+    // STATUS FILTER
+    if (currentFilter !== "all") {
+
+        filteredTasks =
+            filteredTasks.filter(task =>
+
+                task.status === currentFilter
+            );
+    }
+
+    // SORTING
+    if (currentSort === "newest") {
+
+        filteredTasks.sort((a, b) =>
+
+            new Date(b.createdAt)
+            -
+            new Date(a.createdAt)
+        );
+    }
+
+    if (currentSort === "oldest") {
+
+        filteredTasks.sort((a, b) =>
+
+            new Date(a.createdAt)
+            -
+            new Date(b.createdAt)
+        );
+    }
+
+    renderTasks(filteredTasks);
+}
+
+function initializeDragSystem() {
+
+    const taskCards =
+        document.querySelectorAll(
+            ".task-card"
+        );
+
+    taskCards.forEach(card => {
+
+        card.addEventListener(
+            "dragstart",
+            () => {
+
+                card.classList.add(
+                    "dragging"
+                );
+            }
+        );
+
+        card.addEventListener(
+            "dragend",
+            () => {
+
+                card.classList.remove(
+                    "dragging"
+                );
+            }
+        );
     });
 }
 
@@ -419,85 +563,6 @@ async function deleteTask(id) {
     }
 }
 
-/* SEARCH */
-
-document
-    .getElementById(
-        "searchInput"
-    )
-    .addEventListener(
-        "input",
-        (e) => {
-
-            const value =
-                e.target.value
-                    .toLowerCase();
-
-            const filtered =
-                allTasks.filter(task =>
-
-                    task.task
-                        .toLowerCase()
-                        .includes(value)
-
-                    ||
-
-                    task.description
-                        .toLowerCase()
-                        .includes(value)
-                );
-
-            renderTasks(filtered);
-        }
-    );
-
-/* FILTERS */
-
-const filterButtons =
-    document.querySelectorAll(
-        ".filter-btn"
-    );
-
-filterButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            document
-                .querySelector(
-                    ".active-filter"
-                )
-                .classList.remove(
-                    "active-filter"
-                );
-
-            button.classList.add(
-                "active-filter"
-            );
-
-            const filter =
-                button.dataset.filter;
-
-            if (filter === "all") {
-
-                renderTasks(allTasks);
-
-                return;
-            }
-
-            const filteredTasks =
-                allTasks.filter(task =>
-
-                    task.status ===
-                    filter
-                );
-
-            renderTasks(filteredTasks);
-        }
-    );
-});
-
 /* LOGOUT */
 
 document
@@ -539,6 +604,11 @@ menuToggle.addEventListener(
             "active"
         );
     }
+);
+
+searchInput.addEventListener(
+    "input",
+    applyFilters
 );
 
 getTasks();
