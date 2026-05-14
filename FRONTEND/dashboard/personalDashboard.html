@@ -277,7 +277,13 @@
         
                     </select>
 
-                    <input type="datetime-local" id="dueDate" Class="modal-input">
+                    <input type="datetime-local" id="dueDate" Class="modal-input"
+                        document.getElementById(
+                            "dueDate"
+                        ).min =
+                            new Date()
+                                .toISOString()
+                                .slice(0, 16);>
         
                     <button type="submit" Class="submit-task-btn">
                         Create Task
@@ -327,7 +333,13 @@
         
                     </select>
         
-                    <input type="datetime-local" id="editDueDate" Class="modal-input">
+                    <input type="datetime-local" id="editDueDate" Class="modal-input"
+                    document.getElementById(
+                        "editDueDate"
+                    ).min =
+                        new Date()
+                            .toISOString()
+                            .slice(0, 16);>
         
                     <button type="submit" Class="submit-task-btn">
                         Update Task

@@ -176,7 +176,14 @@
 
                 </select>
 
-                <input type="datetime-local" id="dueDate" Class="modal-input">
+                <input type="datetime-local" id="dueDate" Class="modal-input"
+                
+                    document.getElementById(
+                        "dueDate"
+                    ).min =
+                        new Date()
+                            .toISOString()
+                            .slice(0, 16);>
 
                 <button type="submit" Class="submit-task-btn">
                     Create Task

@@ -237,6 +237,22 @@ document
 
             try {
 
+                const selectedDate =
+                    new Date(dueDate);
+
+                const now =
+                    new Date();
+
+                if (selectedDate < now) {
+
+                    showToast(
+                        "Due date cannot be in the past",
+                        "error"
+                    );
+
+                    return;
+                }
+
                 const response =
                     await fetch(
 

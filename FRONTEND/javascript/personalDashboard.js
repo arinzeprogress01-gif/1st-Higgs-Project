@@ -100,40 +100,21 @@ function getDueStatus(dueDate) {
         new Date(dueDate);
 
     const diff =
-        due - now;
+        due.getTime() - now.getTime();
+
+    if (diff <= 0) {
+
+        return "Overdue";
+    }
 
     const minutes =
-        Math.floor(diff / 60000);
+        Math.floor(diff / (1000 * 60));
 
     const hours =
-        Math.floor(minutes / 60);
+        Math.floor(diff / (1000 * 60 * 60));
 
     const days =
-        Math.floor(hours / 24);
-
-    if (diff < 0) {
-
-        const overdueMinutes =
-            Math.abs(minutes);
-
-        const overdueHours =
-            Math.abs(hours);
-
-        const overdueDays =
-            Math.abs(days);
-
-        if (overdueDays > 0) {
-
-            return `Overdue by ${overdueDays} day(s)`;
-        }
-
-        if (overdueHours > 0) {
-
-            return `Overdue by ${overdueHours} hour(s)`;
-        }
-
-        return `Overdue by ${overdueMinutes} minute(s)`;
-    }
+        Math.floor(diff / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
 
@@ -146,7 +127,7 @@ function getDueStatus(dueDate) {
     }
 
     return `Due in ${minutes} minute(s)`;
-};
+}
 
 
 function renderTasks(tasks) {
@@ -566,6 +547,22 @@ taskForm.addEventListener(
             ).value;    
 
         try {
+
+            const selectedDate =
+                new Date(dueDate);
+
+            const now =
+                new Date();
+
+            if (selectedDate < now) {
+
+                showToast(
+                    "Due date cannot be in the past",
+                    "error"
+                );
+
+                return;
+            }
 
             const response = await fetch(
                 "https://onest-higgs-project.onrender.com/api/task/create", 
