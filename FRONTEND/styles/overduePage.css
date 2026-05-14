@@ -190,3 +190,45 @@ body {
         padding-top: 70px;
     }
 }
+
+.back-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #3b82f6,
+            #8b5cf6);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.back-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(139, 92, 246, 0.4);
+}
