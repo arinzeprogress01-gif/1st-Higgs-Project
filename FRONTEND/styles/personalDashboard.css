@@ -923,30 +923,6 @@ body {
         flex-direction: column;
     }
 
-    .sidebar {
-
-        width: 100%;
-
-        min-height: auto;
-
-        flex-direction: row;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        padding: 20px;
-    }
-
-    .sidebar-nav {
-
-        display: flex;
-
-        gap: 12px;
-
-        overflow-x: auto;
-    }
-
     .main-content {
 
         padding: 20px;
