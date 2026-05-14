@@ -711,3 +711,42 @@ body {
 
     font-size: 22px;
 }
+
+.due-text {
+
+    margin-top: 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #facc15;
+}
+
+.due-urgent {
+
+    color: #ef4444;
+
+    animation:
+        pulseUrgent 1s infinite;
+}
+
+.due-overdue {
+
+    color: #dc2626;
+
+    font-weight: 700;
+}
+
+@keyframes pulseUrgent {
+
+    from {
+
+        opacity: 0.5;
+    }
+
+    to {
+
+        opacity: 1;
+    }
+}

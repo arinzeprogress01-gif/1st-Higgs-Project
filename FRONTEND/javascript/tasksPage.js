@@ -76,6 +76,59 @@ async function getTasks() {
     }
 }
 
+function getTimeRemaining(dueDate) {
+
+    if (!dueDate) {
+
+        return "No due date";
+    }
+
+    const now =
+        new Date();
+
+    const due =
+        new Date(dueDate);
+
+    const difference =
+        due - now;
+
+    if (difference <= 0) {
+
+        return "Overdue";
+    }
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+    const hours =
+        Math.floor(
+            (difference /
+                (1000 * 60 * 60))
+            % 24
+        );
+
+    const minutes =
+        Math.floor(
+            (difference /
+                (1000 * 60))
+            % 60
+        );
+
+    if (days > 0) {
+
+        return `${days}d ${hours}h left`;
+    }
+
+    if (hours > 0) {
+
+        return `${hours}h ${minutes}m left`;
+    }
+
+    return `${minutes}m left`;
+}
 /* RENDER */
 
 function renderTasks(tasks) {
@@ -146,6 +199,22 @@ function renderTasks(tasks) {
                 <p Class="task-description">
 
                     ${task.description || "No description"}
+
+                </p>
+
+                <p Class="due-text
+                ${getTimeRemaining(task.dueDate)
+                .includes("Overdue")
+                ? "due-overdue"
+                : ""}
+
+                ${getTimeRemaining(task.dueDate)
+                .includes("m left")
+                ? "due-urgent"
+                : ""}
+                ">
+
+                    ⏳ ${getTimeRemaining(task.dueDate)}
 
                 </p>
 
@@ -733,5 +802,11 @@ function initializeDragAndDrop() {
         );
     });
 }
+
+setInterval(() => {
+
+    applyFilters();
+
+}, 60000);
 
 getTasks();
