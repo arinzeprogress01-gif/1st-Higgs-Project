@@ -97,9 +97,20 @@ function renderTasks(tasks) {
 
         taskFeed.innerHTML += `
 
-            <div
-                Class="task-card"
+            <div Class="task-card
+            ${task.status === "completed"
+            ? "completed-task"
+            : ""}
+
+            ${task.status === "overdue"
+            ? "overdue-task"
+            : ""}
+            "
             >
+            <span Class="status-badge
+            ${task.status}">
+                ${task.status}
+            </span>
 
                 <div Class="task-top">
 
@@ -125,12 +136,16 @@ function renderTasks(tasks) {
 
                     <div Class="task-actions">
 
+                        ${task.status !== "completed"
+                        ? `
                         <button
-                            Class="complete-btn"
-                            onclick="completeTask('${task._id}')"
-                        >
-                            Complete
+                        Class="complete-btn"
+                        onclick="completeTask('${task._id}')">
+                        Complete
                         </button>
+                        `
+                        : ""
+                        }
 
                         <button
                             Class="edit-btn"

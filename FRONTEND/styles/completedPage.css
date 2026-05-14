@@ -33,10 +33,11 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill,
-            minmax(320px, 1fr));
+        repeat(auto-fit, minmax(280px, 1fr));
 
-    gap: 24px;
+    gap: 20px;
+
+    width: 100%;
 }
 
 .task-card {

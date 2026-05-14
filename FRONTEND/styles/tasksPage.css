@@ -263,10 +263,11 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill,
-            minmax(320px, 1fr));
+        repeat(auto-fit, minmax(280px, 1fr));
 
-    gap: 24px;
+    gap: 20px;
+
+    width: 100%;
 }
 
 .task-card {
@@ -578,4 +579,64 @@ body {
 
         padding-top: 70px;
     }
+}
+
+.completed-task {
+
+    opacity: 0.6;
+
+    border-left: 6px solid limegreen;
+}
+
+.completed-task h3 {
+
+    text-decoration: line-through;
+}
+
+.overdue-task {
+
+    border-left: 6px solid red;
+
+    animation: overdueGlow 1s infinite alternate;
+}
+
+@keyframes overdueGlow {
+
+    from {
+
+        box-shadow: 0 0 5px red;
+    }
+
+    to {
+
+        box-shadow: 0 0 15px red;
+    }
+}
+
+.status-badge {
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    text-transform: capitalize;
+}
+
+.status-badge.completed {
+
+    background: limegreen;
+}
+
+.status-badge.overdue {
+
+    background: red;
+
+    color: white;
+}
+
+.status-badge.pending {
+
+    background: orange;
 }
