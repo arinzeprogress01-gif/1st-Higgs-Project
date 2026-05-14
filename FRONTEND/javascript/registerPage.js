@@ -53,6 +53,8 @@ registerForm.addEventListener("submit", async (e) => {
         return;
     }
 
+    
+
     try {
 
         const response = await fetch(

@@ -22,6 +22,11 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({ message: "Passwords do not match" });
         };
 
+        if(!email) {
+            return res.status(400).json({
+                message: "Check Email... Must follow email format xx...123..@gmail.com"
+            })
+        }
         const userExists = await User.findOne({email});
 
         if (userExists)  {
@@ -38,7 +43,7 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({
 
                 message:
-                    "Password must contain uppercase, lowercase and number"
+                    "Password must contain at least 8 values with uppercase, lowercase and number"
             });
         };
 
