@@ -40,29 +40,56 @@ let currentSort = "newest";
 /* GET TASKS */
 function renderSkeletons() {
 
-    const taskFeed =
+    const pendingFeed =
         document.getElementById(
-            "taskFeed"
+            "pendingFeed"
         );
 
-    taskFeed.innerHTML = "";
+    const completedFeed =
+        document.getElementById(
+            "completedFeed"
+        );
 
-    for (let i = 0; i < 6; i++) {
+    const overdueFeed =
+        document.getElementById(
+            "overdueFeed"
+        );
 
-        taskFeed.innerHTML += `
+    if (
+        !pendingFeed ||
+        !completedFeed ||
+        !overdueFeed
+    ) return;
 
-            <div Class="skeleton-card">
+    const skeletonCard = `
 
-                <div Class="skeleton skeleton-title"></div>
+        <div Class="skeleton-card">
 
-                <div Class="skeleton skeleton-text"></div>
+            <div Class="skeleton skeleton-title"></div>
 
-                <div Class="skeleton skeleton-text short"></div>
+            <div Class="skeleton skeleton-text"></div>
 
-                <div Class="skeleton skeleton-btn"></div>
+            <div Class="skeleton skeleton-text short"></div>
 
-            </div>
-        `;
+            <div Class="skeleton skeleton-btn"></div>
+
+        </div>
+    `;
+
+    pendingFeed.innerHTML = "";
+    completedFeed.innerHTML = "";
+    overdueFeed.innerHTML = "";
+
+    for (let i = 0; i < 3; i++) {
+
+        pendingFeed.innerHTML +=
+            skeletonCard;
+
+        completedFeed.innerHTML +=
+            skeletonCard;
+
+        overdueFeed.innerHTML +=
+            skeletonCard;
     }
 }
 
@@ -184,7 +211,7 @@ function renderTasks(tasks) {
     if (tasks.length === 0) {
 
         pendingFeed.innerHTML = `
-            <p className=ty-text>
+            <p Class="empty-text">
                 No tasks found
             </p>
         `;
@@ -269,7 +296,7 @@ function renderTasks(tasks) {
                         </button>
 
                         <button
-                            Class=""delete-btn
+                            Class="delete-btn"
                             onclick="deleteTask('${task._id}')">
                             Delete
                         </button>
@@ -837,5 +864,52 @@ setInterval(() => {
     applyFilters();
 
 }, 60000);
+
+const themeToggle =
+    document.getElementById(
+        "themeToggle"
+    );
+
+const savedTheme =
+    localStorage.getItem(
+        "theme"
+    );
+
+if (savedTheme === "light") {
+
+    document.body.classList.add(
+        "light-mode"
+    );
+
+    themeToggle.textContent =
+        "☀️ Light Mode";
+}
+
+themeToggle.addEventListener(
+    "click",
+    () => {
+
+        document.body.classList.toggle(
+            "light-mode"
+        );
+
+        const isLight =
+            document.body.classList.contains(
+                "light-mode"
+            );
+
+        localStorage.setItem(
+            "theme",
+            isLight
+                ? "light"
+                : "dark"
+        );
+
+        themeToggle.textContent =
+            isLight
+                ? "☀️ Light Mode"
+                : "🌙 Dark Mode";
+    }
+);
 
 getTasks();

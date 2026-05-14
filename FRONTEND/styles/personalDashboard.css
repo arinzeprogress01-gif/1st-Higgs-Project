@@ -15,19 +15,19 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     background:
-        linear-gradient(135deg,
-            #0f172a,
-            #1e293b,
-            #312e81,
-            #0f172a);
+            var(--bg-primary);
 
     background-size: 400% 400%;
 
     animation: backgroundFlow 15s ease infinite;
 
-    color: white;
+    color:
+            var(--text-color);
 
     overflow-x: hidden;
+
+    background:
+            var(--card-bg);
 }
 
 /* =========================
@@ -75,11 +75,13 @@ body {
 
     overflow-y: auto;
 
-    background: rgba(255, 255, 255, 0.05);
+    background:
+            var(--sidebar-bg);
 
     backdrop-filter: blur(20px);
 
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-right:
+            1px solid var(--border-color);
 
     padding: 30px 20px;
 
