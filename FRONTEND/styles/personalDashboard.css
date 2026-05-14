@@ -54,11 +54,7 @@ body {
 ========================= */
 
 .dashboard-container {
-
-    display: grid;
-
-    grid-template-columns: 260px 1fr;
-
+    display: flex;
     min-height: 100vh;
 }
 
@@ -182,6 +178,10 @@ body {
 ========================= */
 
 .main-content {
+
+    flex: 1;
+
+    transition: 0.3s ease;
 
     padding: 40px;
 }
@@ -1150,4 +1150,8 @@ body {
 
         padding-top: 70px;
     }
+}
+
+.main-content.shift {
+    margin-left: 260px;
 }
