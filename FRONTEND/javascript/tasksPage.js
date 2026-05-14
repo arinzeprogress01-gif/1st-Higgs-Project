@@ -80,21 +80,29 @@ async function getTasks() {
 
 function renderTasks(tasks) {
 
-    const taskFeed =
+    const pendingFeed =
         document.getElementById(
-            "taskFeed"
+            "pendingFeed"
         );
 
-    const searchInput =
-        document.getElementById("searchInput");        
+    const completedFeed =
+        document.getElementById(
+            "completedFeed"
+        );
 
-    taskFeed.innerHTML = "";
+    const overdueFeed =
+        document.getElementById(
+            "overdueFeed"
+        );
+
+    pendingFeed.innerHTML = "";
+    completedFeed.innerHTML = "";
+    overdueFeed.innerHTML = "";
 
     if (tasks.length === 0) {
 
-        taskFeed.innerHTML = `
-
-            <p Class="empty-text">
+        pendingFeed.innerHTML = `
+            <p className=ty-text>
                 No tasks found
             </p>
         `;
@@ -104,24 +112,24 @@ function renderTasks(tasks) {
 
     tasks.forEach(task => {
 
-        taskFeed.innerHTML += `
+        const card = `
 
-            <div Class="task-card
+            <div class="task-card
             ${task.status === "completed"
-            ? "completed-task"
-            : ""}
+                ? "completed-task"
+                : ""}
 
             ${task.status === "overdue"
-            ? "overdue-task"
-            : ""}
+                ? "overdue-task"
+                : ""}
             "
+
             draggable="true"
-            data-id="${task._id}"
-            >
-            <span Class="status-badge
-            ${task.status}">
-                ${task.status}
-            </span>
+            data-id="${task._id}">
+
+                <span Class="status-badge ${task.status}">
+                    ${task.status}
+                </span>
 
                 <div Class="task-top">
 
@@ -129,9 +137,7 @@ function renderTasks(tasks) {
                         ${task.task}
                     </h3>
 
-                    <span
-                        Class="priority ${task.priority}"
-                    >
+                    <span Class="priority ${task.priority}">
                         ${task.priority}
                     </span>
 
@@ -160,15 +166,13 @@ function renderTasks(tasks) {
 
                         <button
                             Class="edit-btn"
-                            onclick="openEditTask('${task._id}')"
-                        >
+                            onclick="openEditTask('${task._id}')">
                             Edit
                         </button>
 
                         <button
-                            Class="delete-btn"
-                            onclick="deleteTask('${task._id}')"
-                        >
+                            Class=""delete-btn
+                            onclick="deleteTask('${task._id}')">
                             Delete
                         </button>
 
@@ -178,7 +182,22 @@ function renderTasks(tasks) {
 
             </div>
         `;
+
+        if (task.status === "completed") {
+
+            completedFeed.innerHTML += card;
+
+        } else if (task.status === "overdue") {
+
+            overdueFeed.innerHTML += card;
+
+        } else {
+
+            pendingFeed.innerHTML += card;
+        }
     });
+
+    initializeDragAndDrop();
     initializeDragSystem();
 }
 
@@ -610,5 +629,109 @@ searchInput.addEventListener(
     "input",
     applyFilters
 );
+
+function initializeDragAndDrop() {
+
+    const cards =
+        document.querySelectorAll(
+            ".task-card"
+        );
+
+    const columns =
+        document.querySelectorAll(
+            ".task-column"
+        );
+
+    cards.forEach(card => {
+
+        card.addEventListener(
+            "dragstart",
+            () => {
+
+                card.classList.add(
+                    "dragging"
+                );
+            }
+        );
+
+        card.addEventListener(
+            "dragend",
+            () => {
+
+                card.classList.remove(
+                    "dragging"
+                );
+            }
+        );
+    });
+
+    columns.forEach(column => {
+
+        column.addEventListener(
+            "dragover",
+            (e) => {
+
+                e.preventDefault();
+            }
+        );
+
+        column.addEventListener(
+            "drop",
+            async () => {
+
+                const card =
+                    document.querySelector(
+                        ".dragging"
+                    );
+
+                const taskId =
+                    card.dataset.id;
+
+                const newStatus =
+                    column.dataset.status;
+
+                try {
+
+                    await fetch(
+
+                        `https://onest-higgs-project.onrender.com/api/task/update/${taskId}`,
+
+                        {
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Authorization:
+                                    `Bearer ${token}`,
+                            },
+
+                            body: JSON.stringify({
+
+                                status: newStatus
+                            }),
+                        }
+                    );
+
+                    getTasks();
+
+                    showToast(
+                        "Task moved",
+                        "success"
+                    );
+
+                } catch (error) {
+
+                    showToast(
+                        "Drag update failed",
+                        "error"
+                    );
+                }
+            }
+        );
+    });
+}
 
 getTasks();
