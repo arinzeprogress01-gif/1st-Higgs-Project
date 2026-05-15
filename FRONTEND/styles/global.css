@@ -33,12 +33,12 @@ body.light-mode {
 
     --bg-primary:
         linear-gradient(135deg,
-            #aed1f5,
-            #a9caf7,
-            #cbd5e1);
+            #85b469,
+            #b18a74,
+            #e4e8ee);
 
     --card-bg:
-        rgba(153, 143, 143, 0.9);
+        rgba(168, 109, 109, 0.9);
 
     --text-color:
         #02050a;
@@ -47,7 +47,7 @@ body.light-mode {
         rgba(0, 0, 0, 0.08);
 
     --sidebar-bg:
-        rgba(141, 134, 134, 0.7);
+        rgba(122, 120, 120, 0.7);
 }
 
 html,
