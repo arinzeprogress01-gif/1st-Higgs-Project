@@ -11,6 +11,29 @@ if (!token && !developmentMode) {
 
 let allTasks = [];
 
+/* =========================
+   NOTIFICATION PERMISSION
+========================= */
+
+async function requestNotificationPermission() {
+
+    if (!("Notification" in window)) {
+
+        console.log(
+            "Browser does not support notifications"
+        );
+
+        return;
+    }
+
+    if (Notification.permission === "default") {
+
+        await Notification.requestPermission();
+    }
+}
+
+requestNotificationPermission();
+
 function showToast(message, type) {
 
     const toast =
@@ -36,6 +59,43 @@ function showToast(message, type) {
 let currentFilter = "all";
 
 let currentSort = "newest";
+
+/* =========================
+   BROWSER NOTIFICATIONS
+========================= */
+
+function showBrowserNotification(
+    title,
+    body
+) {
+
+    if (
+        Notification.permission ===
+        "granted"
+    ) {
+
+        new Notification(title, {
+
+            body,
+
+            icon: "/images/images.png",
+        });
+    }
+}
+
+function playNotificationSound() {
+
+    const sound =
+        document.getElementById(
+            "notificationSound"
+        );
+
+    if (sound) {
+
+        sound.play();
+    }
+}
+
 
 /* GET TASKS */
 function renderSkeletons() {
@@ -184,6 +244,115 @@ function getTimeRemaining(dueDate) {
     }
 
     return `${minutes}m left`;
+}
+
+/* =========================
+   OVERDUE CHECKER
+========================= */
+
+function checkOverdueTasks() {
+
+    allTasks.forEach(task => {
+
+        if (task.notified) return;
+
+        if (!task.dueDate) return;
+
+        if (
+            task.status === "completed"
+        ) return;
+
+        const now =
+            new Date();
+
+        const due =
+            new Date(task.dueDate);
+
+        const difference =
+            due - now;
+
+        // 5 minutes left
+        if (
+            difference > 0 &&
+            difference <= 300000
+        ) {
+
+            showBrowserNotification(
+
+                "Task Almost Due",
+
+                `${task.task} is ending soon`
+            );
+
+            playNotificationSound();
+        }
+
+        // OVERDUE
+        if (difference <= 0) {
+
+            showBrowserNotification(
+
+                "Task Overdue",
+
+                `${task.task} is overdue`
+            );
+
+            playNotificationSound();
+        }
+    });
+}
+
+function startTaskNotifications() {
+
+    if (
+        Notification.permission !==
+        "granted"
+    ) {
+
+        Notification.requestPermission();
+    }
+
+    const notificationSound =
+        new Audio(
+            "/sounds/dragon-studio-new-notification-3-398649.mp3"
+        );
+
+    setInterval(() => {
+
+        allTasks.forEach(task => {
+
+            if (
+                task.status ===
+                "completed"
+            ) return;
+
+            if (task.notified) return;
+
+            const remaining =
+                new Date(task.dueDate)
+                -
+                new Date();
+
+            if (
+                remaining > 0 &&
+                remaining < 300000
+            ) {
+
+                new Notification(
+                    "Task Reminder",
+                    {
+                        body:
+                            `${task.task} is due in less than 5 minutes`
+                    }
+                );
+
+                notificationSound.play();
+
+                task.notified = true;
+            }
+        });
+
+    }, 30000);
 }
 /* RENDER */
 
@@ -578,6 +747,15 @@ document
                         "success"
                     );
 
+                    showBrowserNotification(
+
+                        "New Task Added",
+
+                        task
+                    );
+
+                    playNotificationSound();
+
                     taskModal.classList.remove(
                         "active"
                     );
@@ -645,6 +823,15 @@ async function completeTask(id) {
                 "Task completed",
                 "success"
             );
+
+            showBrowserNotification(
+
+                "Task Completed",
+
+                "Great job finishing your task"
+            );
+
+            playNotificationSound();
 
             getTasks();
         }
@@ -911,4 +1098,11 @@ themeToggle.addEventListener(
     }
 );
 
+setInterval(() => {
+
+    checkOverdueTasks();
+
+}, 60000);
+
 getTasks();
+startTaskNotifications();
