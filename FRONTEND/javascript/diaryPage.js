@@ -240,32 +240,39 @@ if (savedTheme === "light") {
         "light-mode"
     );
 
-    themeToggle.textContent = "☀️ Light Mode";
+    if (themeToggle) {
+
+        themeToggle.textContent =
+            "☀️ Light Mode";
+    }
 }
 
-themeToggle.addEventListener(
-    "click",
-    () => {
+if (themeToggle) {
 
-        document.body.classList.toggle(
-            "light-mode"
-        );
+    themeToggle.addEventListener(
+        "click",
+        () => {
 
-        const isLight =
-            document.body.classList.contains(
+            document.body.classList.toggle(
                 "light-mode"
             );
 
-        localStorage.setItem(
-            "theme",
-            isLight
-                ? "light"
-                : "dark"
-        );
+            const isLight =
+                document.body.classList.contains(
+                    "light-mode"
+                );
 
-        themeToggle.textContent =
-            isLight
-                ? "☀️ Light Mode"
-                : "🌙 Dark Mode";
-    }
-);
+            localStorage.setItem(
+                "theme",
+                isLight
+                    ? "light"
+                    : "dark"
+            );
+
+            themeToggle.textContent =
+                isLight
+                    ? "☀️ Light Mode"
+                    : "🌙 Dark Mode";
+        }
+    );
+}
