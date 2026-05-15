@@ -4,11 +4,13 @@ body {
 
     padding: 0;
 
-    background: #0f172a;
+    background:
+            var(--bg-primary);
 
     font-family: Arial, sans-serif;
 
-    color: white;
+    color:
+            var(--text-color);
 }
 
 .tasks-page {
@@ -50,7 +52,7 @@ body {
 .task-card {
 
     background:
-        rgba(255, 255, 255, 0.06);
+            var(--card-bg);
 
     border-radius: 22px;
 
