@@ -47,7 +47,7 @@ body {
 .diary-form-card {
 
     background:
-        rgba(255, 255, 255, 0.08);
+            var(--card-bg);
 
     border-radius: 24px;
 
@@ -118,7 +118,7 @@ body {
 .diary-card {
 
     background:
-        rgba(255, 255, 255, 0.08);
+            var(--card-bg);
 
     padding: 25px;
 
