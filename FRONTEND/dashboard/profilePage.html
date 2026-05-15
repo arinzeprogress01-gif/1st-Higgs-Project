@@ -11,122 +11,241 @@
         Profile | Task 2.0
     </title>
 
-    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="../styles/global.css">
 
-    <link rel="stylesheet" href="/styles/profilePage.css">
+    <link rel="stylesheet" href="../styles/profilePage.css">
 
 </head>
+
 
 <body>
 
     <button id="menuToggle" Class="menu-toggle">
-    
+
         ☰
-    
+
     </button>
 
-    <div Class="profile-container">
+    <div Class="profile-page">
 
         <button id="themeToggle" Class="theme-toggle">
-        
+
             🌙 Dark Mode
-        
+
         </button>
 
-        <div Class="profile-card">
+        <div Class="profile-top-grid">
 
-            <div Class="profile-top">
+            <!-- LEFT SIDE -->
 
-                <div Class="profile-avatar">
-                    H
-                </div>
+            <div Class="profile-card">
 
-                <h1 id="profileName">
-                    User Name
-                </h1>
+                <div Class="profile-top">
 
-                <p id="profileEmail">
-                    user@email.com
-                </p>
+                    <div Class="profile-avatar">
+                        H
+                    </div>
 
-            </div>
+                    <h1 id="profileName">
+                        User Name
+                    </h1>
 
-            <div Class="profile-details">
-
-                <div Class="detail-box">
-
-                    <h3>
-                        System Type
-                    </h3>
-
-                    <p id="systemType">
-                        personal
+                    <p id="profileEmail">
+                        user@email.com
                     </p>
 
                 </div>
 
-                <div Class="detail-box">
+                <div Class="profile-details">
 
-                    <h3>
-                        Diary ID
-                    </h3>
+                    <div Class="detail-box">
 
-                    <p id="diaryId">
-                        PER-2040
-                    </p>
+                        <h3>
+                            System Type
+                        </h3>
+
+                        <p id="systemType">
+                            personal
+                        </p>
+
+                    </div>
+
+                    <div Class="detail-box">
+
+                        <h3>
+                            Diary ID
+                        </h3>
+
+                        <p id="diaryId">
+                            PER-2040
+                        </p>
+
+                    </div>
 
                 </div>
-
-            </div>
 
                 <button id="openEditProfileBtn" Class="edit-profile-btn">
+
                     Edit Profile
+
                 </button>
 
+                <a href="/dashboard/personalDashboard.html">
 
-            <a href="/dashboard/personalDashboard.html">
+                    <button Class="back-btn" id="backBtn">
 
-                <button Class="back-btn" id="backBtn">
-                    Back To Dashboard
-                </button>
+                        Back To Dashboard
 
-            </a>
-            
+                    </button>
+
+                </a>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div Class="profile-right">
+
+                <!-- STATS -->
+
+                <div Class="profile-stats">
+
+                    <div Class="profile-stat-card">
+
+                        <h3>
+                            Total Tasks
+                        </h3>
+
+                        <h1 id="totalTasks">
+                            0
+                        </h1>
+
+                    </div>
+
+                    <div Class="profile-stat-card">
+
+                        <h3>
+                            Completed
+                        </h3>
+
+                        <h1 id="completedTasks">
+                            0
+                        </h1>
+
+                    </div>
+
+                    <div Class="profile-stat-card">
+
+                        <h3>
+                            Pending
+                        </h3>
+
+                        <h1 id="pendingTasks">
+                            0
+                        </h1>
+
+                    </div>
+
+                    <div Class="profile-stat-card">
+
+                        <h3>
+                            Overdue
+                        </h3>
+
+                        <h1 id="overdueTasks">
+                            0
+                        </h1>
+
+                    </div>
+
+                </div>
+
+                <!-- ACTIVITY -->
+
+                <div Class="activity-section">
+
+                    <h2>
+                        Recent Activity
+                    </h2>
+
+                    <div id="activityFeed">
+
+                    </div>
+
+                </div>
+
+                <!-- SECURITY -->
+
+                <div Class="security-section">
+
+                    <h2>
+                        Security Settings
+                    </h2>
+
+                    <form id="changePasswordForm">
+
+                        <input type="password" id="currentPassword" placeholder="Current Password"
+                            Class="security-input" />
+
+                        <input type="password" id="newPassword" placeholder="New Password" Class="security-input" />
+
+                        <input type="password" id="confirmNewPassword" placeholder="Confirm New Password"
+                            Class="security-input" />
+
+                        <button type="submit" Class="security-btn">
+
+                            Change Password
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
+
+    <!-- EDIT PROFILE MODAL -->
+
     <div Class="modal-overlay" id="editProfileModal">
-    
+
         <div Class="modal-content">
-    
+
             <div Class="modal-top">
-    
+
                 <h2>
                     Edit Profile
                 </h2>
-    
+
                 <button id="closeProfileModal">
+
                     ✕
+
                 </button>
-    
+
             </div>
-    
+
             <form id="editProfileForm">
-    
+
                 <input type="text" id="editProfileName" Class="modal-input" placeholder="Full Name">
-    
+
                 <input type="email" id="editProfileEmail" Class="modal-input" placeholder="Email">
-    
+
                 <button type="submit" Class="submit-task-btn">
+
                     Save Changes
+
                 </button>
-    
+
             </form>
-    
+
         </div>
-    
+
     </div>
+
     <script src="/javascript/profilePage.js"></script>
 
 </body>

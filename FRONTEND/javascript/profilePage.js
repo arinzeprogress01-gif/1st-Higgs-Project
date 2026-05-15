@@ -198,6 +198,115 @@ document
         }
     );
 
+async function loadProfileStats() {
+
+    try {
+
+        const response =
+            await fetch(
+
+                "https://onest-higgs-project.onrender.com/api/task/list",
+
+                {
+                    headers: {
+
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const tasks =
+            await response.json();
+
+        const total =
+            tasks.length;
+
+        const completed =
+            tasks.filter(task =>
+                task.status === "completed"
+            ).length;
+
+        const overdue =
+            tasks.filter(task =>
+                task.status === "overdue"
+            ).length;
+
+        const pending =
+            tasks.filter(task =>
+                task.status === "pending"
+            ).length;
+
+        document.getElementById(
+            "totalTasks"
+        ).textContent = total;
+
+        document.getElementById(
+            "completedTasks"
+        ).textContent = completed;
+
+        document.getElementById(
+            "pendingTasks"
+        ).textContent = pending;
+
+        document.getElementById(
+            "overdueTasks"
+        ).textContent = overdue;
+
+        loadActivity(tasks);
+
+    } catch (error) {
+
+        console.log(error);
+    }
+}
+
+function loadActivity(tasks) {
+
+    const activityFeed =
+        document.getElementById(
+            "activityFeed"
+        );
+
+    activityFeed.innerHTML = "";
+
+    const recentTasks =
+        [...tasks]
+            .sort(
+
+                (a, b) =>
+
+                    new Date(b.updatedAt)
+                    -
+                    new Date(a.updatedAt)
+            )
+            .slice(0, 5);
+
+    recentTasks.forEach(task => {
+
+        activityFeed.innerHTML += `
+
+            <div Class="activity-item">
+
+                Task:
+
+                <strong>
+                    ${task.task}
+                </strong>
+
+                was updated to
+
+                <strong>
+                    ${task.status}
+                </strong>
+
+            </div>
+        `;
+    });
+}
+
+loadProfileStats();
+
 const currentPage =
     window.location.pathname;
 
@@ -220,6 +329,95 @@ navItems.forEach(item => {
         );
     }
 });
+
+document
+    .getElementById(
+        "changePasswordForm"
+    )
+    .addEventListener(
+
+        "submit",
+
+        async (e) => {
+
+            e.preventDefault();
+
+            const currentPassword =
+                document.getElementById(
+                    "currentPassword"
+                ).value;
+
+            const newPassword =
+                document.getElementById(
+                    "newPassword"
+                ).value;
+
+            const confirmPassword =
+                document.getElementById(
+                    "confirmNewPassword"
+                ).value;
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        "https://onest-higgs-project.onrender.com/api/auth/change-password",
+
+                        {
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Authorization:
+                                    `Bearer ${token}`
+                            },
+
+                            body: JSON.stringify({
+
+                                currentPassword,
+                                newPassword,
+                                confirmPassword
+                            })
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (response.ok) {
+
+                    showToast(
+                        data.message,
+                        "success"
+                    );
+
+                    document
+                        .getElementById(
+                            "changePasswordForm"
+                        )
+                        .reset();
+
+                } else {
+
+                    showToast(
+                        data.message,
+                        "error"
+                    );
+                }
+
+            } catch (error) {
+
+                showToast(
+                    "Password update failed",
+                    "error"
+                );
+            }
+        }
+    );
 
 const menuToggle =
     document.getElementById(
