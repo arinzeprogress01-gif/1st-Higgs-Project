@@ -431,3 +431,77 @@ body {
         padding: 22px;
     }
 }
+
+
+.profile-card,
+.profile-stat-card,
+.activity-item,
+.security-section,
+.detail-box {
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border 0.3s ease,
+        background 0.3s ease;
+}
+
+
+
+.profile-card:hover,
+.profile-stat-card:hover,
+.activity-item:hover,
+.security-section:hover,
+.detail-box:hover {
+
+    transform: translateY(-6px);
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.edit-profile-btn,
+.back-btn,
+.security-btn,
+.submit-task-btn {
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.edit-profile-btn:hover,
+.back-btn:hover,
+.security-btn:hover,
+.submit-task-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(99, 102, 241, 0.35);
+}
+
+
+
+.profile-avatar {
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 30px rgba(99, 102, 241, 0.45);
+}
