@@ -10,21 +10,18 @@ if (!token && !developmentMode) {
 }
 function showToast(message, type) {
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+    const toast = document.getElementById("toast");
 
-    toast.textContent =
-        message;
+    if (!toast) {
+        console.warn("Toast element missing on this page");
+        return;
+    }
 
-    toast.className =
-        `show ${type}`;
+    toast.textContent = message;
+    toast.className = `show ${type}`;
 
     setTimeout(() => {
-
         toast.className="";
-
     }, 3000);
 }
 /* ANIMATED COUNTERS */
