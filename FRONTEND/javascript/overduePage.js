@@ -153,4 +153,24 @@ themeToggle.addEventListener(
     }
 );
 
+
+window.addEventListener(
+    "load",
+    () => {
+
+        const pageLoader =
+            document.getElementById(
+                "pageLoader"
+            );
+
+        setTimeout(() => {
+
+            pageLoader.classList.add(
+                "hidden"
+            );
+
+        }, 800);
+    }
+);
+
 getOverdueTasks();

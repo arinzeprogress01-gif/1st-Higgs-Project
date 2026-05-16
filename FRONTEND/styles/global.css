@@ -180,3 +180,99 @@ ul {
     transform:
         translateY(-3px);
 }
+
+
+/* =========================
+   PAGE LOADER
+========================= */
+
+.page-loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b,
+            #312e81
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 999999;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+.loader-content {
+
+    text-align: center;
+
+    color: white;
+}
+
+.loader-content h2 {
+
+    margin-top: 20px;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.loader-spinner {
+
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 50%;
+
+    border:
+        5px solid rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    border-top:
+        5px solid #8b5cf6;
+
+    animation:
+        spinLoader 1s linear infinite;
+
+    margin: auto;
+}
+
+@keyframes spinLoader {
+
+    from {
+
+        transform: rotate(0deg);
+    }
+
+    to {
+
+        transform: rotate(360deg);
+    }
+}
+
