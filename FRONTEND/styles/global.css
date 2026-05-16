@@ -10,11 +10,11 @@
 :root {
 
     --bg-primary:
-        linear-gradient(135deg,
-            #0f172a,
-            #1e293b,
-            #312e81,
-            #0f172a);
+    linear-gradient(135deg,
+        #000000,
+        #07090d,
+        #0c1118,
+        #05070a);
 
     --card-bg:
         rgba(255, 255, 255, 0.06);
@@ -32,13 +32,14 @@
 body.light-mode {
 
     --bg-primary:
-        linear-gradient(135deg,
-            #85b469,
-            #b18a74,
-            #e4e8ee);
-
-    --card-bg:
-        rgba(168, 109, 109, 0.9);
+            linear-gradient(135deg,
+                #ffffff,
+                #f8fafc,
+                #e2e8f0,
+                #f1f5f9);
+    
+        --card-bg:
+            rgba(255, 255, 255, 0.95);
 
     --text-color:
         #02050a;
