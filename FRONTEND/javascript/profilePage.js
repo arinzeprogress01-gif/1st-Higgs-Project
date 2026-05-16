@@ -292,26 +292,29 @@ async function loadProfileStats() {
                 task.status === "pending"
             ).length;
 
-        
+       
+       
         animateCounter(
             "totalTasks",
-            totalTasks
+            total
         );
 
         animateCounter(
             "completedTasks",
-            completedTasks
+            completed
         );
 
         animateCounter(
             "pendingTasks",
-            pendingTasks
+            pending
         );
 
         animateCounter(
             "overdueTasks",
-            overdueTasks
+            overdue
         );
+
+
 
 
 
