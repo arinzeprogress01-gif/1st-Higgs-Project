@@ -9,6 +9,44 @@ if (!token && !developmentMode) {
         "/authPages/loginPage.html";
 }
 
+
+/* ANIMATED COUNTERS */
+
+function animateCounter(id, endValue) {
+
+    const element =
+        document.getElementById(id);
+
+    let start = 0;
+
+    const duration = 1000;
+
+    const increment =
+        endValue / (duration / 16);
+
+    const counter =
+        setInterval(() => {
+
+            start += increment;
+
+            if (start >= endValue) {
+
+                element.textContent =
+                    endValue;
+
+                clearInterval(counter);
+
+            } else {
+
+                element.textContent =
+                    Math.floor(start);
+            }
+
+        }, 16);
+}
+
+
+
 const user =
     JSON.parse(
         localStorage.getItem("user")
@@ -237,21 +275,28 @@ async function loadProfileStats() {
                 task.status === "pending"
             ).length;
 
-        document.getElementById(
-            "totalTasks"
-        ).textContent = total;
+        
+        animateCounter(
+            "totalTasks",
+            totalTasks
+        );
 
-        document.getElementById(
-            "completedTasks"
-        ).textContent = completed;
+        animateCounter(
+            "completedTasks",
+            completedTasks
+        );
 
-        document.getElementById(
-            "pendingTasks"
-        ).textContent = pending;
+        animateCounter(
+            "pendingTasks",
+            pendingTasks
+        );
 
-        document.getElementById(
-            "overdueTasks"
-        ).textContent = overdue;
+        animateCounter(
+            "overdueTasks",
+            overdueTasks
+        );
+
+
 
         loadActivity(tasks);
 
