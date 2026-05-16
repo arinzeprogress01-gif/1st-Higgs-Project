@@ -8,8 +8,25 @@ if (!token && !developmentMode) {
     window.location.href =
         "/authPages/loginPage.html";
 }
+function showToast(message, type) {
 
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
+    toast.textContent =
+        message;
+
+    toast.className =
+        `show ${type}`;
+
+    setTimeout(() => {
+
+        toast.className="";
+
+    }, 3000);
+}
 /* ANIMATED COUNTERS */
 
 function animateCounter(id, endValue) {
