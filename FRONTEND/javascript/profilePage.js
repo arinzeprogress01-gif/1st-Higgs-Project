@@ -60,6 +60,98 @@ function animateCounter(id, endValue) {
 }
 
 
+function renderSecurityLogs() {
+
+    const securityLogFeed =
+        document.getElementById(
+            "securityLogFeed"
+        );
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem(
+                "securityLogs"
+            )
+        ) || [];
+
+    securityLogFeed.innerHTML = "";
+
+    if (logs.length === 0) {
+
+        securityLogFeed.innerHTML = `
+
+    < p >
+    No security activity yet
+            </p >
+    `;
+
+        return;
+    }
+
+    logs.forEach(log => {
+
+        securityLogFeed.innerHTML += `
+
+    < div Class = "security-log-item" >
+
+                <div Class="security-log-action">
+
+                    ${log.action}
+
+                </div>
+
+                <div Class="security-log-date">
+
+                    ${log.date}
+
+                </div>
+
+            </div >
+    `;
+    });
+}
+
+/* =========================
+   SECURITY LOG SYSTEM
+========================= */
+
+function addSecurityLog(action) {
+
+    const logs =
+        JSON.parse(
+            localStorage.getItem(
+                "securityLogs"
+            )
+        ) || [];
+
+    logs.unshift({
+
+        action,
+
+        date:
+            new Date()
+                .toLocaleString()
+    });
+
+    
+    if (logs.length > 20) {
+
+        logs.pop();
+    }
+
+
+
+    localStorage.setItem(
+
+        "securityLogs",
+
+        JSON.stringify(logs)
+    );
+}
+
+
+
+
 
 const user =
     JSON.parse(
@@ -698,4 +790,6 @@ confirmDeleteBtn.addEventListener(
         }, 1500);
     }
 );
+
+renderSecurityLogs();
 
