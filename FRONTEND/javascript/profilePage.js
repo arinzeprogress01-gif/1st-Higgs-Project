@@ -611,3 +611,91 @@ themeToggle.addEventListener(
                 : "🌙 Dark Mode";
     }
 );
+
+
+/* =========================
+   DELETE ACCOUNT SYSTEM
+========================= */
+
+const deleteAccountBtn =
+    document.getElementById(
+        "deleteAccountBtn"
+    );
+
+const deleteAccountModal =
+    document.getElementById(
+        "deleteAccountModal"
+    );
+
+const cancelDeleteBtn =
+    document.getElementById(
+        "cancelDeleteBtn"
+    );
+
+const confirmDeleteBtn =
+    document.getElementById(
+        "confirmDeleteBtn"
+    );
+
+/* OPEN MODAL */
+
+deleteAccountBtn.addEventListener(
+    "click",
+    () => {
+
+        deleteAccountModal.classList.add(
+            "active"
+        );
+    }
+);
+
+/* CLOSE MODAL */
+
+cancelDeleteBtn.addEventListener(
+    "click",
+    () => {
+
+        deleteAccountModal.classList.remove(
+            "active"
+        );
+    }
+);
+
+/* DELETE ACCOUNT */
+
+confirmDeleteBtn.addEventListener(
+    "click",
+    () => {
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        localStorage.removeItem(
+            "profileImage"
+        );
+
+        localStorage.removeItem(
+            "theme"
+        );
+
+        localStorage.clear();
+
+        showToast(
+            "Account deleted",
+            "success"
+        );
+
+        setTimeout(() => {
+
+            window.location.href =
+                "/authPages/signupPage.html";
+
+        }, 1500);
+    }
+);
+

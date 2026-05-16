@@ -94,6 +94,13 @@
 
                 </button>
 
+                
+                <button id="deleteAccountBtn" Class="delete-account-btn">
+                
+                    Delete Account
+                
+                </button>
+                 
                 <a href="/dashboard/personalDashboard.html">
 
                     <button Class="back-btn" id="backBtn">
@@ -249,6 +256,44 @@
         </div>
 
     </div>
+
+    <div Class="modal-overlay" id="deleteAccountModal">
+    
+        <div Class="modal-content delete-modal">
+    
+            <h2>
+                Delete Account
+            </h2>
+    
+            <p Class="delete-warning">
+    
+                This action is irreversible.
+                All tasks, diary entries,
+                profile settings, and account
+                data will be permanently deleted.
+    
+            </p>
+    
+            <div Class="delete-actions">
+    
+                <button id="cancelDeleteBtn" Class="cancel-delete-btn">
+    
+                    Cancel
+    
+                </button>
+    
+                <button id="confirmDeleteBtn" Class="confirm-delete-btn">
+    
+                    Delete Forever
+    
+                </button>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+  
 
     <div id="toast"></div>
 
