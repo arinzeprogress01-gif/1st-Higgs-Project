@@ -33,13 +33,13 @@ body.light-mode {
 
     --bg-primary:
             linear-gradient(135deg,
-                #e9edf2,
-                #d9dee6,
-                #cfd6df,
-                #e3e8ef);
+                #d8f17b,
+                #8dbd81,
+                #79e4c0,
+                #d7e986);
     
         --card-bg:
-            rgba(245, 247, 250, 0.78);
+            rgba(255, 255, 255, 0.55);
 
     --text-color:
         #02050a;
