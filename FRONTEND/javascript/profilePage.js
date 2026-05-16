@@ -125,6 +125,71 @@ document
         }
     );
 
+const profileAvatar =
+    document.getElementById(
+        "profileAvatar"
+    );
+
+const profileImageInput =
+    document.getElementById(
+        "profileImageInput"
+    );
+
+profileAvatar.addEventListener(
+    "click",
+    () => {
+
+        profileImageInput.click();
+    }
+);
+
+profileImageInput.addEventListener(
+    "change",
+    (e) => {
+
+        const file =
+            e.target.files[0];
+
+        if (!file) return;
+
+        const reader =
+            new FileReader();
+
+        reader.onload = () => {
+
+            const imageData =
+                reader.result;
+
+            profileAvatar.src =
+                imageData;
+
+            localStorage.setItem(
+                "profileImage",
+                imageData
+            );
+
+            showToast(
+                "Profile image updated",
+                "success"
+            );
+        };
+
+        reader.readAsDataURL(file);
+    }
+);
+
+const savedProfileImage =
+    localStorage.getItem(
+        "profileImage"
+    );
+
+if (savedProfileImage) {
+
+    profileAvatar.src =
+        savedProfileImage;
+}
+
+
 const editProfileModal =
     document.getElementById(
         "editProfileModal"

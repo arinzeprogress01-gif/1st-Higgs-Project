@@ -68,31 +68,36 @@ body {
     text-align: center;
 }
 
+
+
 .profile-avatar {
 
-    width: 110px;
+    width: 120px;
 
-    height: 110px;
+    height: 120px;
 
     border-radius: 50%;
 
-    background:
-        linear-gradient(135deg,
-            #3b82f6,
-            #8b5cf6);
+    object-fit: cover;
 
-    display: flex;
+    cursor: pointer;
 
-    justify-content: center;
+    border:
+        4px solid rgba(255, 255, 255, 0.15);
 
-    align-items: center;
-
-    font-size: 42px;
-
-    font-weight: bold;
-
-    margin: auto auto 20px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+.profile-avatar:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 30px rgba(99, 102, 241, 0.4);
+}
+
 
 .profile-top h1 {
 
@@ -496,12 +501,4 @@ body {
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
-}
-
-.profile-avatar:hover {
-
-    transform: scale(1.05);
-
-    box-shadow:
-        0 0 30px rgba(99, 102, 241, 0.45);
 }
