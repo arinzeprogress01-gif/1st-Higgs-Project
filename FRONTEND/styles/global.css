@@ -33,10 +33,10 @@ body.light-mode {
 
     --bg-primary:
             linear-gradient(135deg,
-                #d8f17b,
+                #90b40e,
                 #6bb159,
                 #b3c41e,
-                #b7ca61);
+                #b3cf37);
     
         --card-bg:
             rgba(216, 81, 81, 0.55);
