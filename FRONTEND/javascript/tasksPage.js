@@ -847,88 +847,52 @@ async function completeTask(id) {
 
 /* DELETE TASK */
 
-function deleteTask(id) {
+async function deleteTask(id) {
 
-    currentDeleteTaskId = id;
+    const confirmDelete =
+        confirm(
+            "Delete this task?"
+        );
 
-    document
-        .getElementById("deleteModal")
-        .classList.add("active");
-}
+    if (!confirmDelete)
+        return;
 
+    try {
 
-document
-    .getElementById("cancelDeleteBtn")
-    .addEventListener(
-        "click",
-        () => {
+        const response =
+            await fetch(
 
-            document
-                .getElementById("deleteModal")
-                .classList.remove("active");
-        }
-    );
+                `https://onest-higgs-project.onrender.com/api/task/delete/${id}`,
 
-document
-    .getElementById("confirmDeleteBtn")
-    .addEventListener(
-        "click",
-        async () => {
+                {
+                    method: "DELETE",
 
-            try {
+                    headers: {
 
-                const response =
-                    await fetch(
-
-                        `https://onest-higgs-project.onrender.com/api/task/delete/${currentDeleteTaskId}`,
-
-                        {
-                            method: "DELETE",
-
-                            headers: {
-                                Authorization:
-                                    `Bearer ${token}`,
-                            },
-                        }
-                    );
-
-                const data =
-                    await response.json();
-
-                if (response.ok) {
-
-                    document
-                        .getElementById(
-                            "deleteModal"
-                        )
-                        .classList.remove(
-                            "active"
-                        );
-
-                    showToast(
-                        "Task deleted successfully",
-                        "success"
-                    );
-
-                    getTasks();
-
-                } else {
-
-                    showToast(
-                        data.message,
-                        "error"
-                    );
+                        Authorization:
+                            `Bearer ${token}`,
+                    },
                 }
+            );
 
-            } catch (error) {
+        if (response.ok) {
 
-                showToast(
-                    "Failed to delete task",
-                    "error"
-                );
-            }
+            showToast(
+                "Task deleted",
+                "success"
+            );
+
+            getTasks();
         }
-    );
+
+    } catch (error) {
+
+        showToast(
+            "Delete failed",
+            "error"
+        );
+    }
+}
 
 /* LOGOUT */
 
