@@ -1,0 +1,17 @@
+{
+    "name": "Task 2.0",
+    "short_name": "Task2",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f172a",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/assets/favicon/762686.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
+
