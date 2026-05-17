@@ -847,52 +847,88 @@ async function completeTask(id) {
 
 /* DELETE TASK */
 
-async function deleteTask(id) {
+function deleteTask(id) {
 
-    const confirmDelete =
-        confirm(
-            "Delete this task?"
-        );
+    currentDeleteTaskId = id;
 
-    if (!confirmDelete)
-        return;
-
-    try {
-
-        const response =
-            await fetch(
-
-                `https://onest-higgs-project.onrender.com/api/task/delete/${id}`,
-
-                {
-                    method: "DELETE",
-
-                    headers: {
-
-                        Authorization:
-                            `Bearer ${token}`,
-                    },
-                }
-            );
-
-        if (response.ok) {
-
-            showToast(
-                "Task deleted",
-                "success"
-            );
-
-            getTasks();
-        }
-
-    } catch (error) {
-
-        showToast(
-            "Delete failed",
-            "error"
-        );
-    }
+    document
+        .getElementById("deleteModal")
+        .classList.add("active");
 }
+
+
+document
+    .getElementById("cancelDeleteBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("deleteModal")
+                .classList.remove("active");
+        }
+    );
+
+document
+    .getElementById("confirmDeleteBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        `https://onest-higgs-project.onrender.com/api/task/delete/${currentDeleteTaskId}`,
+
+                        {
+                            method: "DELETE",
+
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`,
+                            },
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (response.ok) {
+
+                    document
+                        .getElementById(
+                            "deleteModal"
+                        )
+                        .classList.remove(
+                            "active"
+                        );
+
+                    showToast(
+                        "Task deleted successfully",
+                        "success"
+                    );
+
+                    getTasks();
+
+                } else {
+
+                    showToast(
+                        data.message,
+                        "error"
+                    );
+                }
+
+            } catch (error) {
+
+                showToast(
+                    "Failed to delete task",
+                    "error"
+                );
+            }
+        }
+    );
 
 /* LOGOUT */
 
