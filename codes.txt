@@ -112,3 +112,49 @@ proper metadata
 loading screen
 custom 404
 PWA/mobile installability
+
+\┌──────────────────────────────────────────────┐
+│ SIDEBAR                                     │
+│                                              │
+│  Logo                                        │
+│                                              │
+│  Dashboard                                   │
+│  Projects                                    │
+│  Kanban                                      │
+│  Analytics                                   │
+│  Calendar                                    │
+│  Team                                        │
+│  Files                                       │
+│  Messages                                    │
+│  Settings                                    │
+│                                              │
+│  Logout                                      │
+└───────────────┬──────────────────────────────┘
+                │
+                │
+┌───────────────┴──────────────────────────────┐
+│ TOPBAR                                       │
+│ Search | Notifications | Profile | + Create │
+└──────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────┐
+│ KPI CARDS GRID                               │
+│                                              │
+│ Total Projects | Revenue | Team Output       │
+│ Active Tasks  | Deadlines | Completion Rate  │
+└──────────────────────────────────────────────┘
+
+┌──────────────────────┬───────────────────────┐
+│ PROJECT PROGRESS     │ TEAM ACTIVITY         │
+│                      │                       │
+│ charts               │ live feed             │
+│ analytics            │ notifications         │
+│ progress bars        │ updates               │
+└──────────────────────┴───────────────────────┘
+
+┌──────────────────────┬───────────────────────┐
+│ KANBAN BOARD         │ CALENDAR / DEADLINES │
+│                      │                       │
+│ drag-drop tasks      │ meetings              │
+│ workflow             │ schedules             │
+└──────────────────────┴───────────────────────┘
